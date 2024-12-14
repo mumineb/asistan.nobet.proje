@@ -51,18 +51,25 @@ namespace PediatriAsistanNöbet1.Controllers
 
         // POST: Asistan/Edit/5
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Edit(int id, Asistan asistan)
         {
-            try
+            
+            if (ModelState.IsValid)
             {
-                
+                var a =db.Asistanlar.Where(x => x.AsistanID==id).SingleOrDefault();
 
+                a.Adres = asistan.Adres;   
+                a.Ad =  asistan.Ad;
+                a.Email = asistan.Email;
+                a.Soyad = asistan.Soyad;
+                a.Telefon   = asistan.Telefon;
+
+                db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            catch
-            {
-                return View();
-            }
+            
+            return View(asistan);
         }
 
         // GET: Asistan/Delete/5
