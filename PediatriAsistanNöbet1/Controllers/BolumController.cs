@@ -21,21 +21,6 @@ namespace PediatriAsistanNöbet1.Controllers
             return View(db.Bolumler.ToList());
         }
 
-        // GET: Bolum/Details/5
-        public ActionResult Details(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Bolum bolum = db.Bolumler.Find(id);
-            if (bolum == null)
-            {
-                return HttpNotFound();
-            }
-            return View(bolum);
-        }
-
         // GET: Bolum/Create
         public ActionResult Create()
         {
