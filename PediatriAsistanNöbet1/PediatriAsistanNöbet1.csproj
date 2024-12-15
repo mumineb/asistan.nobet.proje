@@ -903,7 +903,9 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\AsistanController.cs" />
+    <Compile Include="Controllers\BolumController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\OgretimUyesiController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -954,6 +956,17 @@
     <Content Include="tsconfig.json" />
     <Content Include="Views\Asistan\Index.cshtml" />
     <Content Include="Views\Asistan\Edit.cshtml" />
+    <Content Include="Views\OgretimUyesi\Index.cshtml" />
+    <Content Include="Views\OgretimUyesi\Edit.cshtml" />
+    <Content Include="Views\Asistan\Create.cshtml" />
+    <Content Include="Views\Asistan\Delete.cshtml" />
+    <Content Include="Views\OgretimUyesi\Delete.cshtml" />
+    <Content Include="Views\OgretimUyesi\Create.cshtml" />
+    <Content Include="Views\Bolum\Create.cshtml" />
+    <Content Include="Views\Bolum\Delete.cshtml" />
+    <Content Include="Views\Bolum\Details.cshtml" />
+    <Content Include="Views\Bolum\Edit.cshtml" />
+    <Content Include="Views\Bolum\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

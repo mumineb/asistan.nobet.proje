@@ -1,0 +1,51 @@
+﻿@model PediatriAsistanNöbet1.Models.Model.Bolum
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Bolum</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.BolumAdi)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BolumAdi)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.HastaSayisi)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.HastaSayisi)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.BosYatakSayisi)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BosYatakSayisi)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Aciklama)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Aciklama)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.BolumID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

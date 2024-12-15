@@ -2,7 +2,9 @@
 using PediatriAsistanNöbet1.Models.Model;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
+using System.Net;
 using System.Web;
 using System.Web.Mvc;
 
@@ -28,17 +30,18 @@ namespace PediatriAsistanNöbet1.Controllers
 
         // POST: Asistan/Create
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        [ValidateAntiForgeryToken]
+        public ActionResult Create([Bind (Include = "AsistanID, Ad, Soyad, Teleon, Email, Adres ")] Asistan asistan)
         {
-            try
+            if (ModelState.IsValid)
             {
-                // TODO: Add insert logic here
-
+                db.Asistanlar.Add(asistan);
+                db.SaveChanges();
                 return RedirectToAction("Index");
+
             }
-            catch
             {
-                return View();
+                return View(asistan);
             }
         }
 
@@ -73,25 +76,38 @@ namespace PediatriAsistanNöbet1.Controllers
         }
 
         // GET: Asistan/Delete/5
-        public ActionResult Delete(int id)
+        public ActionResult Delete(int? id)
         {
-            return View();
+
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Asistan asistan = db.Asistanlar.Find(id);
+            if (asistan == null)
+            {
+                return HttpNotFound();
+            }
+            return View(asistan);
         }
 
         // POST: Asistan/Delete/5
-        [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public ActionResult DeleteConfirmed(int id)
         {
-            try
-            {
-                // TODO: Add delete logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
+            Asistan asistan = db.Asistanlar.Find(id);
+            db.Asistanlar.Remove(asistan);
+            db.SaveChanges();
+            return RedirectToAction("Index");
+        }
+ 
+            protected override void Dispose (bool disposing)
+        {
+            if (!disposing) {
+                db.Dispose();
+        }
+            base.Dispose(disposing);
         }
     }
 }

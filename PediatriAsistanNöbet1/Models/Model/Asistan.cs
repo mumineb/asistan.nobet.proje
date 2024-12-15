@@ -33,3 +33,4 @@ namespace PediatriAsistanNöbet1.Models.Model
     }
 
 }
+
