@@ -21,6 +21,7 @@ namespace PediatriAsistanNöbet1.Models.DataContext
         public DbSet<Randevu> Randevular { get; set; }
         public DbSet<RandevuDurum> RandevuDurumlari { get; set; }
         public DbSet<AcilDurum> AcilDurumlar { get; set; }
+        public DbSet<Slider> Sliders { get; set; }
 
     }
 }

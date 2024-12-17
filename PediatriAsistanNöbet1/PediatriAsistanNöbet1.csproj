@@ -901,11 +901,15 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\AcilDurumController.cs" />
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\AsistanController.cs" />
     <Compile Include="Controllers\BolumController.cs" />
+    <Compile Include="Controllers\denemeController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\NobetController.cs" />
     <Compile Include="Controllers\OgretimUyesiController.cs" />
+    <Compile Include="Controllers\SliderController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -919,6 +923,7 @@
     <Compile Include="Models\Model\OgretimUyesi.cs" />
     <Compile Include="Models\Model\Randevu.cs" />
     <Compile Include="Models\Model\RandevuDurum.cs" />
+    <Compile Include="Models\Model\Slider.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -940,7 +945,6 @@
     <Content Include="Content\bootstrap-grid.min.css.map" />
     <Content Include="Content\bootstrap-grid.css.map" />
     <None Include="packages.config" />
-    <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\_SiteLayout.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Scripts\bootstrap.min.js.map" />
@@ -967,6 +971,23 @@
     <Content Include="Views\Bolum\Details.cshtml" />
     <Content Include="Views\Bolum\Edit.cshtml" />
     <Content Include="Views\Bolum\Index.cshtml" />
+    <Content Include="Views\AcilDurum\Create.cshtml" />
+    <Content Include="Views\AcilDurum\Delete.cshtml" />
+    <Content Include="Views\AcilDurum\Details.cshtml" />
+    <Content Include="Views\AcilDurum\Edit.cshtml" />
+    <Content Include="Views\AcilDurum\Index.cshtml" />
+    <Content Include="Views\deneme\Index.cshtml" />
+    <Content Include="Views\Admin\Login.cshtml" />
+    <Content Include="Views\Slider\Create.cshtml" />
+    <Content Include="Views\Slider\Delete.cshtml" />
+    <Content Include="Views\Slider\Details.cshtml" />
+    <Content Include="Views\Slider\Edit.cshtml" />
+    <Content Include="Views\Slider\Index.cshtml" />
+    <Content Include="Views\Nobet\Create.cshtml" />
+    <Content Include="Views\Nobet\Delete.cshtml" />
+    <Content Include="Views\Nobet\Details.cshtml" />
+    <Content Include="Views\Nobet\Edit.cshtml" />
+    <Content Include="Views\Nobet\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -976,6 +997,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Uploads\Slider\" />
   </ItemGroup>
   <ItemGroup>
     <TypeScriptCompile Include="Content\AdminLayout\assets\vendor\chart.js\controllers\controller.bar.d.ts" />

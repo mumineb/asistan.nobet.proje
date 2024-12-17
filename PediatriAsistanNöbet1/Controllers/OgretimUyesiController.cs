@@ -15,7 +15,8 @@ namespace PediatriAsistanNöbet1.Controllers
         // GET: OgretimUyesi
         public ActionResult Index()
         {
-            return View(db.OgretimUyeleri.ToList());
+            db.Configuration.LazyLoadingEnabled = false;
+            return View(db.OgretimUyeleri.Include("Bolum").ToList());
         }
 
         // GET: OgretimUyesi/Details/5
