@@ -1,0 +1,57 @@
+﻿@model IEnumerable<PediatriAsistanNöbet1.Models.Model.OgretimUyesi>
+    @{
+        ViewBag.Title = "OgretimUyesi";
+        Layout = "~/Views/Shared/_SiteLayout.cshtml";
+    }
+
+    <section id="doctors" class="doctors section">
+
+        <!-- Section Title -->
+        <div class="container section-title" data-aos="fade-up">
+            <h2>Doktorlar</h2>
+            <p>Pediatri Bölümü Doktorlarımız</p>
+        </div><!-- End Section Title -->
+
+
+        <div class="container">
+            <div class="row gy-4">
+                @if (Model != null && Model.Any())
+                {
+                    int delay = 100; // Başlangıç delay değeri
+                    foreach (var item in Model)
+                    {
+                        <div class="col-lg-6" data-aos="fade-up" data-aos-delay="@delay">
+                            <div class="team-member d-flex align-items-start">
+                                <div class="pic">
+                                    <img src="~/Content/SiteLayout/assets/img/doctors/doctor-logo-49399.png" class="img-fluid" alt="">
+                                </div>
+                                <div class="member-info">
+                                    <h4>@item.Ad @item.Soyad</h4>
+                                    <span>@item.Bolum.BolumAdi</span>
+                                    <span>Öğretim Üyesi Doktor</span>
+                                    <strong>Telefon:</strong> @item.Telefon<br />
+                                    <strong>E-posta:</strong> <a href="mailto:@item.Email">@item.Email</a><br />
+                                    <strong>Adres:</strong> @item.Adres
+
+                                    <div class="social">
+                                        <a href="#"><i class="bi bi-twitter"></i></a>
+                                        <a href="#"><i class="bi bi-facebook"></i></a>
+                                        <a href="#"><i class="bi bi-instagram"></i></a>
+                                        <a href="#"><i class="bi bi-linkedin"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        delay += 100; // Delay'i her döngüde artır
+                    }
+                }
+                else
+                {
+                    <div class="col-12">
+                        <p>Gösterilecek veri bulunamadı.</p>
+                    </div>
+                }
+            </div>
+        </div>
+
+    </section>

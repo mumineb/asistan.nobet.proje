@@ -1,0 +1,50 @@
+﻿@model IEnumerable<PediatriAsistanNöbet1.Models.Model.Bolum>
+@{
+    ViewBag.Title = "Bolum";
+    Layout = "~/Views/Shared/_SiteLayout.cshtml";
+}
+
+
+<section id="doctors" class="doctors section">
+
+    <!-- Section Title -->
+    <div class="container section-title" data-aos="fade-up">
+        <h2>Bölümler</h2>
+        <p>Pediatri Bölüm Bilgileri</p>
+    </div><!-- End Section Title -->
+
+
+    <div class="container">
+        <div class="row gy-4">
+            @if (Model != null && Model.Any())
+            {
+                int delay = 100; // Başlangıç delay değeri
+                foreach (var item in Model)
+                {
+                    <div class="col-lg-12" data-aos="fade-up" data-aos-delay="@delay">
+                        <div class="team-member d-flex align-items-start">
+                            <div class="pic">
+                                <img src="~/Content/SiteLayout/assets/img/doctors/doctor-logo-49399.png" class="img-fluid" alt="">
+                            </div>
+                            <div class="member-info">
+                                <h4>@item.BolumAdi</h4>                            
+                                <strong> Boş Yatak Sayısı:</strong> @item.BosYatakSayisi<br />
+                                <strong>Hasta Sayısı:</strong> @item.HastaSayisi <br />
+                                <strong>Açıklama:</strong> @item.Aciklama
+                            </div>
+                        </div>
+                    </div>
+                    delay += 100; // Delay'i her döngüde artır
+                }
+            }
+            else
+            {
+                <div class="col-12">
+                    <p>Gösterilecek veri bulunamadı.</p>
+                </div>
+            }
+        </div>
+    </div>
+
+</section>
+
