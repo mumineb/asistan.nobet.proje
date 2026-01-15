@@ -1,11 +1,7 @@
 ﻿using PediatriAsistanNöbet1.Models.DataContext;
 using PediatriAsistanNöbet1.Models.Model;
-using System;
-using System.Collections.Generic;
-using System.Configuration;
 using System.Linq;
 using System.Net;
-using System.Web;
 using System.Web.Mvc;
 
 namespace PediatriAsistanNöbet1.Controllers

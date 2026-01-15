@@ -1,0 +1,73 @@
+﻿@model PediatriAsistanNöbet1.Models.Model.Randevu
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_SiteLayout.cshtml";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Randevu</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Asistan.Ad)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Asistan.Ad)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Musaitlik.MusaitlikID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Musaitlik.MusaitlikID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.OgretimUyesi.Ad)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.OgretimUyesi.Ad)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.RandevuDurum.DurumAdi)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RandevuDurum.DurumAdi)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.RandevuTarihi)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RandevuTarihi)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Aciklama)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Aciklama)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

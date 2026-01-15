@@ -16,13 +16,11 @@ namespace PediatriAsistanNöbet1.Models.Model
         public int AsistanID { get; set; }
         [ForeignKey("AsistanID")]
         [DisplayName("Asistan Ad")]
-        [Required, StringLength(50)]
         public Asistan Asistan { get; set; }
 
         public int BolumID { get; set; }
         [ForeignKey("BolumID")]
         [DisplayName("Bölüm")]
-        [Required, StringLength(50)]
         public Bolum Bolum { get; set; }
 
         [Required]

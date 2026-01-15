@@ -1,0 +1,64 @@
+﻿@model IEnumerable<PediatriAsistanNöbet1.Models.Model.Randevu>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_SiteLayout.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Asistan.Ad)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Musaitlik.MusaitlikID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.OgretimUyesi.Ad)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.RandevuDurum.DurumAdi)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.RandevuTarihi)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Aciklama)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Asistan.Ad)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Musaitlik.MusaitlikID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.OgretimUyesi.Ad)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.RandevuDurum.DurumAdi)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.RandevuTarihi)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Aciklama)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.RandevuID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.RandevuID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.RandevuID })
+        </td>
+    </tr>
+}
+
+</table>

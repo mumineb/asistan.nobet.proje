@@ -30,6 +30,7 @@ namespace PediatriAsistanNöbet1.Models.Model
         [DisplayName("Adres")]
         [StringLength(200)]
         public string Adres { get; set; }
+
     }
 
 }

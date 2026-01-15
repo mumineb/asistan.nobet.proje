@@ -29,6 +29,10 @@ namespace PediatriAsistanNöbet1.Models.Model
         public DateTime RandevuTarihi { get; set; }
         [StringLength(500)]
         public string Aciklama { get; set; }
+        public int MusaitlikID { get; set; }
+        [ForeignKey("MusaitlikID")]
+        public Musaitlik Musaitlik { get; set; }
+
     }
 
 }

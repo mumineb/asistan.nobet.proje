@@ -1,0 +1,27 @@
+﻿@model IEnumerable<PediatriAsistanNöbet1.Models.Model.Randevu>
+@{
+    ViewBag.Title = "Asistan";
+    Layout = "~/Views/Shared/_SiteLayout.cshtml";
+}
+
+<h2>Randevu Oluştur</h2>
+
+<form action="@Url.Action("RandevuOlustur")" method="post">
+    <div class="form-group">
+        <label>Öğretim Üyesi</label>
+        <select class="form-control" asp-for="OgretimUyesiID">
+            @foreach (var item in ViewBag.Musaitlikler)
+            {
+                <option value="@item.OgretimUyesiID">@item.OgretimUyesi.Ad</option>
+            }
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label>Randevu Tarihi</label>
+        <input type="datetime-local" class="form-control" asp-for="RandevuTarihi" />
+    </div>
+
+    <button type="submit" class="btn btn-primary">Randevu Oluştur</button>
+</form>
+

@@ -32,6 +32,7 @@ namespace PediatriAsistanNöbet1.Models.Model
         [StringLength(200)]
         [DisplayName("Adres")]
         public string Adres { get; set; }
+        public ICollection<Musaitlik> Musaitlikler { get; set; } = new List<Musaitlik>();
 
         public ICollection<Randevu> Randevular { get; set; }
     }

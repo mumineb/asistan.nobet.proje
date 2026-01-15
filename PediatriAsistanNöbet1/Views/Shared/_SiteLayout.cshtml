@@ -27,6 +27,8 @@
     <!-- Main CSS File -->
     <link href="/Content/SiteLayout/assets/css/main.css" rel="stylesheet">
 
+    <link rel="stylesheet" href="~/Content/site.css" />
+
     <!-- =======================================================
     * Template Name: Medilab
     * Template URL: https://bootstrapmade.com/medilab-free-medical-bootstrap-theme/
@@ -58,43 +60,44 @@
             <div class="container position-relative d-flex align-items-center justify-content-between">
                 <a href="/Home/Index" class="logo d-flex align-items-center me-auto">
                     <!-- Uncomment the line below if you also wish to use an image logo -->
-                     <img src="/Content/AdminLayout/assets/img/logo.png" alt=""> 
+                    <img src="/Content/AdminLayout/assets/img/logo.png" alt="">
                     <h1 class="sitename">Pediatri Nöbet </h1>
                 </a>
 
                 <nav id="navmenu" class="navmenu">
                     <ul>
                         <li><a href="/Home/Index/" class="active">Anasayfa<br></a></li>
+                        <li><a href="/Home/Nobet/">Nobetler</a></li>
                         <li><a href="/Home/OgretimUyesi/">Doktorlar</a></li>
                         <li><a href="/Home/Asistan/">Asistanlar</a></li>
                         <li><a href="/Home/Bolum/">Bölümler</a></li>
                         <li><a href="/Home/AcilDurum/">Acil Durumlar</a></li>
                         <li class="dropdown">
                             @* <a href="#"><span>Personel Bilgi</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
-            <ul>
-                <li><a href="#">Dropdown 1</a></li>
-                <li class="dropdown">
-                    <a href="#"><span>Deep Dropdown</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
                     <ul>
-                        <li><a href="#">Deep Dropdown 1</a></li>
-                        <li><a href="#">Deep Dropdown 2</a></li>
-                        <li><a href="#">Deep Dropdown 3</a></li>
-                        <li><a href="#">Deep Dropdown 4</a></li>
-                        <li><a href="#">Deep Dropdown 5</a></li>
-                    </ul>
-                </li>
-                <li><a href="#">Dropdown 2</a></li>
-                <li><a href="#">Dropdown 3</a></li>
-                <li><a href="#">Dropdown 4</a></li>
-            </ul>*@
+                        <li><a href="#">Dropdown 1</a></li>
+                        <li class="dropdown">
+                            <a href="#"><span>Deep Dropdown</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
+                            <ul>
+                                <li><a href="#">Deep Dropdown 1</a></li>
+                                <li><a href="#">Deep Dropdown 2</a></li>
+                                <li><a href="#">Deep Dropdown 3</a></li>
+                                <li><a href="#">Deep Dropdown 4</a></li>
+                                <li><a href="#">Deep Dropdown 5</a></li>
+                            </ul>
                         </li>
-                        <li><a href="#contact">Contact</a></li>
+                        <li><a href="#">Dropdown 2</a></li>
+                        <li><a href="#">Dropdown 3</a></li>
+                        <li><a href="#">Dropdown 4</a></li>
+                    </ul>*@
+                        </li>
+
                     </ul>
                     <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
                 </nav>
 
-                <a class="cta-btn d-none d-sm-block" href="#appointment">Make an Appointment</a>
-
+                <a class="cta-btn d-none d-sm-block" href="/Randevu/Index/">Randevu Al</a>
+                <a class="cta-btn d-none d-sm-block" href="/Admin/Login/">Admin Giriş</a>
             </div>
 
         </div>
@@ -191,6 +194,9 @@
 
     <!-- Preloader -->
     <div id="preloader"></div>
+
+    <!-- FullCalendar JS -->
+    <script src="~/Content/fullcalendar/dist/index.global.js"></script>
 
     <!-- Vendor JS Files -->
     <script src="/Content/SiteLayout/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>

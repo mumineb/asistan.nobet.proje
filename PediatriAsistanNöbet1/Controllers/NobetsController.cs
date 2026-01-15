@@ -1,51 +1,50 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
-using System.Web;
 using System.Web.Mvc;
 using PediatriAsistanNöbet1.Models.DataContext;
 using PediatriAsistanNöbet1.Models.Model;
+using PediatriAsistanNöbet1.ViewModels;
 
 namespace PediatriAsistanNöbet1.Controllers
 {
-    public class NobetController : Controller
+    public class NobetsController : Controller
     {
         private PediatriDBContext db = new PediatriDBContext();
 
-        // GET: Nobet
+        // GET: Nobets
         public ActionResult Index()
         {
-            var nobetler = db.Nobetler.Include(n => n.Asistan).Include(n => n.Bolum);
-            return View(nobetler.ToList());
+
+
+            var nobetler = db.Nobetler.Include(n => n.Asistan).Include(n => n.Bolum)
+    .Select(n => new NobetViewModel
+    {
+        NobetID = n.NobetID,
+        AsistanAdiSoyadi = n.Asistan.Ad + " " + n.Asistan.Soyad, // Ad + Soyad birleşimi
+        BolumAdi = n.Bolum.BolumAdi,
+        NobetTarihi = n.NobetTarihi
+    }).ToList();
+
+            return View(nobetler);
         }
 
-        // GET: Nobet/Details/5
-        public ActionResult Details(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Nobet nobet = db.Nobetler.Find(id);
-            if (nobet == null)
-            {
-                return HttpNotFound();
-            }
-            return View(nobet);
-        }
 
-        // GET: Nobet/Create
+        // GET: Nobets/Create
         public ActionResult Create()
         {
-            ViewBag.AsistanID = new SelectList(db.Asistanlar, "AsistanID", "Ad");
+            ViewBag.AsistanID = new SelectList(db.Asistanlar.Select(a => new
+            {
+                a.AsistanID,
+                FullName = a.Ad + " " + a.Soyad // Ad + Soyad birleşimi
+            }), "AsistanID", "FullName");
             ViewBag.BolumID = new SelectList(db.Bolumler, "BolumID", "BolumAdi");
             return View();
         }
 
-        // POST: Nobet/Create
+        // POST: Nobets/Create
         // Aşırı gönderim saldırılarından korunmak için bağlamak istediğiniz belirli özellikleri etkinleştirin. 
         // Daha fazla bilgi için bkz. https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
@@ -59,12 +58,21 @@ namespace PediatriAsistanNöbet1.Controllers
                 return RedirectToAction("Index");
             }
 
+            if (!ModelState.IsValid)
+            {
+                var errors = ModelState.Values.SelectMany(v => v.Errors);
+                foreach (var error in errors)
+                {
+                    Console.WriteLine(error.ErrorMessage);
+                }
+            }
+
             ViewBag.AsistanID = new SelectList(db.Asistanlar, "AsistanID", "Ad", nobet.AsistanID);
             ViewBag.BolumID = new SelectList(db.Bolumler, "BolumID", "BolumAdi", nobet.BolumID);
             return View(nobet);
         }
 
-        // GET: Nobet/Edit/5
+        // GET: Nobets/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -81,7 +89,7 @@ namespace PediatriAsistanNöbet1.Controllers
             return View(nobet);
         }
 
-        // POST: Nobet/Edit/5
+        // POST: Nobets/Edit/5
         // Aşırı gönderim saldırılarından korunmak için bağlamak istediğiniz belirli özellikleri etkinleştirin. 
         // Daha fazla bilgi için bkz. https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
@@ -99,7 +107,7 @@ namespace PediatriAsistanNöbet1.Controllers
             return View(nobet);
         }
 
-        // GET: Nobet/Delete/5
+        // GET: Nobets/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -114,7 +122,7 @@ namespace PediatriAsistanNöbet1.Controllers
             return View(nobet);
         }
 
-        // POST: Nobet/Delete/5
+        // POST: Nobets/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
