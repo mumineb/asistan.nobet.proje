@@ -1,0 +1,120 @@
+﻿@{
+    ViewBag.Title = "Bölüm Yönetimi";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="card">
+    <div class="card-header d-flex justify-content-between align-items-center">
+        <h4>Bölüm Listesi</h4>
+        <button class="btn btn-primary" onclick="ModalAc()"><i class="bi bi-hospital"></i> Yeni Bölüm Ekle</button>
+    </div>
+    <div class="card-body">
+        <table class="table table-bordered table-striped" id="tblBolum">
+            <thead>
+                <tr>
+                    <th>Bölüm Adı</th>
+                    <th>Hasta Sayısı</th>
+                    <th>Boş Yatak</th>
+                    <th>Açıklama</th>
+                    <th style="width:150px">İşlemler</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+    </div>
+</div>
+
+<div class="modal fade" id="modalForm" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modalTitle">Bölüm İşlemleri</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <form id="frmBolum">
+                    <input type="hidden" id="BolumID" name="BolumID" value="0" />
+                    <div class="mb-3">
+                        <label>Bölüm Adı</label>
+                        <input type="text" class="form-control" name="BolumAdi" id="BolumAdi" required />
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label>Hasta Sayısı</label>
+                            <input type="number" class="form-control" name="HastaSayisi" id="HastaSayisi" />
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label>Boş Yatak Sayısı</label>
+                            <input type="number" class="form-control" name="BosYatakSayisi" id="BosYatakSayisi" />
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label>Açıklama</label>
+                        <textarea class="form-control" name="Aciklama" id="Aciklama" rows="3"></textarea>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Kapat</button>
+                <button type="button" class="btn btn-primary" onclick="Kaydet()">Kaydet</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $(document).ready(function () { VerileriGetir(); });
+
+    function VerileriGetir() {
+        $.ajax({
+            url: '/Bolum/GetBolumler', type: 'GET', dataType: 'json',
+            success: function (data) {
+                var html = '';
+                $.each(data, function (i, item) {
+                    html += `<tr>
+                        <td>${item.BolumAdi}</td>
+                        <td>${item.HastaSayisi}</td>
+                        <td>${item.BosYatakSayisi}</td>
+                        <td>${item.Aciklama || '-'}</td>
+                        <td>
+                            <button class="btn btn-sm btn-warning" onclick="Duzenle(${item.BolumID})">Düzenle</button>
+                            <button class="btn btn-sm btn-danger" onclick="Sil(${item.BolumID})">Sil</button>
+                        </td>
+                    </tr>`;
+                });
+                $('#tblBolum tbody').html(html);
+            }
+        });
+    }
+
+    function ModalAc() {
+        $('#frmBolum')[0].reset();
+        $('#BolumID').val(0);
+        $('#modalForm').modal('show');
+    }
+
+    function Kaydet() {
+        $.post('/Bolum/Kaydet', $('#frmBolum').serialize(), function (res) {
+            if (res.success) { $('#modalForm').modal('hide'); VerileriGetir(); }
+            else { alert(res.message); }
+        });
+    }
+
+    function Duzenle(id) {
+        $.get('/Bolum/GetById/' + id, function (res) {
+            $('#BolumID').val(res.BolumID);
+            $('#BolumAdi').val(res.BolumAdi);
+            $('#HastaSayisi').val(res.HastaSayisi);
+            $('#BosYatakSayisi').val(res.BosYatakSayisi);
+            $('#Aciklama').val(res.Aciklama);
+            $('#modalForm').modal('show');
+        });
+    }
+
+    function Sil(id) {
+        if (confirm('Silmek istediğinize emin misiniz?')) {
+            $.post('/Bolum/Sil/' + id, function (res) { VerileriGetir(); });
+        }
+    }
+</script>

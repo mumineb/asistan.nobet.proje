@@ -1,0 +1,41 @@
+﻿@model IEnumerable<PediatriAsistanNöbet1.Models.Model.OgretimUyesi>
+@{
+    ViewBag.Title = "Öğretim Üyeleri";
+    Layout = "~/Views/Shared/_SiteLayout.cshtml";
+}
+
+<div class="container mt-4">
+    <h3 class="mb-4 text-success border-bottom pb-2">Akademik Kadro</h3>
+    <div class="row g-4">
+        @if (Model != null && Model.Any())
+        {
+            foreach (var item in Model)
+            {
+                <div class="col-md-6">
+                    <div class="card h-100 shadow-sm border-start border-4 border-success">
+                        <div class="card-body">
+                            <div class="d-flex justify-content-between">
+                                <div>
+                                    <h5 class="card-title fw-bold">@item.Ad @item.Soyad</h5>
+                                    <span class="badge bg-success mb-2">@item.Bolum.BolumAdi</span>
+                                </div>
+                                <i class="bi bi-mortarboard fs-1 text-success opacity-50"></i>
+                            </div>
+                            <p class="card-text text-muted small mt-2">
+                                <i class="bi bi-geo-alt-fill"></i> @item.Adres
+                            </p>
+                            <div class="d-flex gap-2 mt-3">
+                                <a href="mailto:@item.Email" class="btn btn-sm btn-outline-success flex-grow-1"><i class="bi bi-envelope"></i> E-posta</a>
+                                <a href="tel:@item.Telefon" class="btn btn-sm btn-outline-secondary flex-grow-1"><i class="bi bi-telephone"></i> Ara</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        }
+        else
+        {
+            <div class="col-12"><div class="alert alert-light">Kayıtlı öğretim üyesi bulunamadı.</div></div>
+        }
+    </div>
+</div>

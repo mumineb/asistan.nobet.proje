@@ -1,0 +1,72 @@
+﻿@{
+    ViewBag.Title = "Randevu Listesi";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="card">
+    <div class="card-header d-flex justify-content-between align-items-center">
+        <h4>Alınan Randevular</h4>
+    </div>
+    <div class="card-body">
+        <table class="table table-striped table-hover" id="tblRandevu">
+            <thead>
+                <tr>
+                    <th>Öğretim Üyesi</th>
+                    <th>Randevu Alan</th>
+                    <th>Tarih</th>
+                    <th>Durum</th>
+                    <th>Not / Açıklama</th>
+                    <th>İşlem</th>
+                </tr>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $(document).ready(function () {
+        VerileriGetir();
+    });
+
+    function VerileriGetir() {
+        $.ajax({
+            url: '/Randevu/GetRandevular',
+            type: 'GET',
+            dataType: 'json',
+            success: function (data) {
+                var html = '';
+                $.each(data, function (i, item) {
+                    html += '<tr>';
+                    html += '<td>' + item.Hoca + '</td>';
+                    html += '<td>' + item.Asistan + '</td>';
+                    html += '<td>' + item.Tarih + '</td>';
+                    html += '<td><span class="badge bg-info text-dark">' + item.Durum + '</span></td>';
+                    html += '<td>' + (item.Aciklama ? item.Aciklama : '-') + '</td>';
+                    html += '<td>';
+                    html += '<button class="btn btn-sm btn-danger" onclick="Sil(' + item.RandevuID + ')"><i class="bi bi-trash"></i> İptal/Sil</button>';
+                    html += '</td>';
+                    html += '</tr>';
+                });
+                $('#tblRandevu tbody').html(html);
+            },
+            error: function (err) {
+                console.log("Veri çekme hatası: ", err);
+            }
+        });
+    }
+
+    function Sil(id) {
+        if (confirm("Bu randevuyu iptal etmek/silmek istediğinize emin misiniz?")) {
+            $.post('/Randevu/Sil/' + id, function (res) {
+                if (res.success) {
+                    VerileriGetir(); // Tabloyu yenile
+                } else {
+                    alert("Silme işlemi başarısız oldu.");
+                }
+            });
+        }
+    }
+</script>

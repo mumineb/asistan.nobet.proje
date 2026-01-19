@@ -1,0 +1,119 @@
+﻿@{
+    ViewBag.Title = "Müsaitlik Yönetimi";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="card">
+    <div class="card-header d-flex justify-content-between align-items-center">
+        <h4>Randevu Müsaitlik Saatleri</h4>
+        <button class="btn btn-primary" onclick="ModalAc()"><i class="bi bi-clock"></i> Yeni Saat Ekle</button>
+    </div>
+    <div class="card-body">
+        <table class="table table-bordered" id="tblMusaitlik">
+            <thead>
+                <tr>
+                    <th>Öğretim Üyesi</th>
+                    <th>Tarih</th>
+                    <th>Saat</th>
+                    <th>İşlemler</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+    </div>
+</div>
+
+<div class="modal fade" id="modalForm" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Müsaitlik Ekle/Düzenle</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <form id="frmMusaitlik">
+                    <input type="hidden" id="MusaitlikID" name="MusaitlikID" value="0" />
+
+                    <div class="mb-3">
+                        <label>Öğretim Üyesi</label>
+                        <select class="form-control" name="OgretimUyesiID" id="OgretimUyesiID" required></select>
+                    </div>
+                    <div class="mb-3">
+                        <label>Tarih</label>
+                        <input type="date" class="form-control" name="Tarih" id="Tarih" required />
+                    </div>
+                    <div class="mb-3">
+                        <label>Saat</label>
+                        <input type="time" class="form-control" name="Saat" id="Saat" required />
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" onclick="Kaydet()">Kaydet</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $(document).ready(function () {
+        HocalariGetir();
+        VerileriGetir();
+    });
+
+    function HocalariGetir() {
+        $.get('/Musaitlik/GetHocalar', function (data) {
+            var opt = '<option value="">Seçiniz...</option>';
+            $.each(data, function (i, item) {
+                opt += `<option value="${item.OgretimUyesiID}">${item.AdSoyad}</option>`;
+            });
+            $('#OgretimUyesiID').html(opt);
+        });
+    }
+
+    function VerileriGetir() {
+        $.get('/Musaitlik/GetMusaitlikler', function (data) {
+            var html = '';
+            $.each(data, function (i, item) {
+                html += `<tr>
+                    <td>${item.HocaAd}</td>
+                    <td>${item.Tarih}</td>
+                    <td>${item.Saat}</td>
+                    <td>
+                        <button class="btn btn-sm btn-warning" onclick="Duzenle(${item.MusaitlikID})">Düzenle</button>
+                        <button class="btn btn-sm btn-danger" onclick="Sil(${item.MusaitlikID})">Sil</button>
+                    </td>
+                </tr>`;
+            });
+            $('#tblMusaitlik tbody').html(html);
+        });
+    }
+
+    function ModalAc() {
+        $('#frmMusaitlik')[0].reset();
+        $('#MusaitlikID').val(0);
+        $('#modalForm').modal('show');
+    }
+
+    function Kaydet() {
+        $.post('/Musaitlik/Kaydet', $('#frmMusaitlik').serialize(), function (res) {
+            if (res.success) { $('#modalForm').modal('hide'); VerileriGetir(); }
+            else { alert(res.message); }
+        });
+    }
+
+    function Duzenle(id) {
+        $.get('/Musaitlik/GetById/' + id, function (res) {
+            $('#MusaitlikID').val(res.MusaitlikID);
+            $('#OgretimUyesiID').val(res.OgretimUyesiID);
+            $('#Tarih').val(res.Tarih);
+            $('#Saat').val(res.Saat);
+            $('#modalForm').modal('show');
+        });
+    }
+
+    function Sil(id) {
+        if(confirm("Silinecek?")) $.post('/Musaitlik/Sil/' + id, function () { VerileriGetir(); });
+    }
+</script>

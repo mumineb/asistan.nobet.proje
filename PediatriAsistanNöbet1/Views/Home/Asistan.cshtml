@@ -1,0 +1,39 @@
+﻿@model IEnumerable<PediatriAsistanNöbet1.Models.Model.Asistan>
+@{
+    ViewBag.Title = "Asistan Listesi";
+    Layout = "~/Views/Shared/_SiteLayout.cshtml";
+}
+
+<div class="container mt-4">
+    <h3 class="mb-4 text-primary border-bottom pb-2">Asistan Kadrosu</h3>
+    <div class="row g-4">
+        @if (Model != null && Model.Any())
+        {
+            foreach (var item in Model)
+            {
+                <div class="col-md-6 col-lg-4">
+                    <div class="card h-100 shadow-sm border-0">
+                        <div class="card-body d-flex align-items-center">
+                            <div class="flex-shrink-0">
+                                <i class="bi bi-person-circle display-4 text-secondary"></i>
+                            </div>
+                            <div class="flex-grow-1 ms-3">
+                                <h5 class="card-title mb-0">@item.Ad @item.Soyad</h5>
+                                <small class="text-muted">Asistan Doktor</small>
+                                <hr class="my-2" />
+                                <div class="small">
+                                    <div class="mb-1"><i class="bi bi-telephone me-2"></i> @item.Telefon</div>
+                                    <div class="mb-1"><i class="bi bi-envelope me-2"></i> <a href="mailto:@item.Email">E-posta Gönder</a></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        }
+        else
+        {
+            <div class="col-12"><div class="alert alert-light">Kayıtlı asistan bulunamadı.</div></div>
+        }
+    </div>
+</div>

@@ -1,0 +1,151 @@
+﻿@{
+    ViewBag.Title = "Acil Durum Yönetimi";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml"; // Admin Layout kullandığından emin ol
+}
+
+<div class="card">
+    <div class="card-header d-flex justify-content-between align-items-center">
+        <h4>Acil Durum Bildirimleri</h4>
+        <button class="btn btn-primary" onclick="ModalAc()"><i class="bi bi-plus-lg"></i> Yeni Bildirim Ekle</button>
+    </div>
+    <div class="card-body">
+        <table class="table table-bordered table-hover" id="tblAcilDurum">
+            <thead class="table-light">
+                <tr>
+                    <th>Başlık</th>
+                    <th>İçerik</th>
+                    <th>Tarih</th>
+                    <th style="width: 150px;">İşlemler</th>
+                </tr>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<div class="modal fade" id="modalForm" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modalTitle">Yeni Bildirim</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <form id="frmAcilDurum">
+                    <input type="hidden" id="AcilDurumID" name="AcilDurumID" value="0" />
+
+                    <div class="mb-3">
+                        <label class="form-label">Başlık</label>
+                        <input type="text" class="form-control" id="Baslik" name="Baslik" required />
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">Açıklama / İçerik</label>
+                        <textarea class="form-control" id="Icerik" name="Icerik" rows="4" required></textarea>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">İptal</button>
+                <button type="button" class="btn btn-primary" onclick="Kaydet()">Kaydet</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<script>
+    $(document).ready(function () {
+        VerileriGetir();
+    });
+
+    // Listeyi Çekme Fonksiyonu
+    function VerileriGetir() {
+        $.ajax({
+            url: '/AcilDurum/GetAcilDurumlar',
+            type: 'GET',
+            dataType: 'json',
+            success: function (data) {
+                var html = '';
+                $.each(data, function (key, item) {
+                    // C# DateTime formatını JS stringinden temizleme (Gerekirse)
+                    var tarih = item.Tarih;
+
+                    html += '<tr>';
+                    html += '<td>' + item.Baslik + '</td>';
+                    html += '<td>' + item.Icerik + '</td>';
+                    html += '<td>' + tarih + '</td>';
+                    html += '<td>';
+                    html += '<button class="btn btn-sm btn-warning me-2" onclick="Duzenle(' + item.AcilDurumID + ')">Düzenle</button>';
+                    html += '<button class="btn btn-sm btn-danger" onclick="Sil(' + item.AcilDurumID + ')">Sil</button>';
+                    html += '</td>';
+                    html += '</tr>';
+                });
+                $('#tblAcilDurum tbody').html(html);
+            }
+        });
+    }
+
+    // Modalı Aç (Yeni Kayıt)
+    function ModalAc() {
+        $('#frmAcilDurum')[0].reset(); // Formu temizle
+        $('#AcilDurumID').val(0); // ID'yi sıfırla
+        $('#modalTitle').text("Yeni Bildirim Ekle");
+        $('#modalForm').modal('show');
+    }
+
+    // Düzenle Butonuna Basınca
+    function Duzenle(id) {
+        $.ajax({
+            url: '/AcilDurum/GetById/' + id,
+            type: 'GET',
+            dataType: 'json',
+            success: function (res) {
+                $('#AcilDurumID').val(res.AcilDurumID);
+                $('#Baslik').val(res.Baslik);
+                $('#Icerik').val(res.Icerik);
+
+                $('#modalTitle').text("Bildirimi Düzenle");
+                $('#modalForm').modal('show');
+            }
+        });
+    }
+
+    // Kaydet Butonuna Basınca
+    function Kaydet() {
+        var data = $('#frmAcilDurum').serialize(); // Form verilerini al
+        $.ajax({
+            url: '/AcilDurum/Kaydet',
+            type: 'POST',
+            data: data,
+            success: function (res) {
+                if (res.success) {
+                    $('#modalForm').modal('hide'); // Modalı kapat
+                    VerileriGetir(); // Tabloyu yenile
+                    alert(res.message); // İstersen SweetAlert kullanabiliriz
+                } else {
+                    alert(res.message);
+                }
+            }
+        });
+    }
+
+    // Sil Butonuna Basınca
+    function Sil(id) {
+        if (confirm("Bu bildirimi silmek istediğinize emin misiniz?")) {
+            $.ajax({
+                url: '/AcilDurum/Sil/' + id,
+                type: 'POST',
+                success: function (res) {
+                    if (res.success) {
+                        VerileriGetir();
+                    } else {
+                        alert(res.message);
+                    }
+                }
+            });
+        }
+    }
+</script>

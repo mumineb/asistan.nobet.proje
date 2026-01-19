@@ -1,0 +1,42 @@
+﻿@model IEnumerable<PediatriAsistanNöbet1.Models.Model.AcilDurum>
+@{
+    ViewBag.Title = "AcilDurum";
+    Layout = "~/Views/Shared/_SiteLayout.cshtml";
+}
+
+
+<div class="container mt-5">
+    <h1 class="text-center mb-4">Acil Durumlar</h1>
+    <div class="row">
+        @if (Model != null && Model.Any())
+        {
+            foreach (var item in Model)
+            {
+                <div class="col-md-6 col-lg-4 mb-4">
+                    <div class="card shadow-sm">
+                        <div class="card-body">
+                            <h5 class="card-title text-danger">
+                                <i class="bi bi-exclamation-triangle-fill"></i> @item.Baslik
+                            </h5>
+                            <p class="card-text text-muted">
+                                <strong>Tarih:</strong> @item.Tarih.ToString("dd/MM/yyyy HH:mm")
+                            </p>
+                            <p class="card-text">
+                                <strong>Açıklama:</strong> @item.Icerik
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            }
+        }
+        else
+        {
+            <div class="col-12">
+                <p class="text-center text-muted">Gösterilecek acil durum bulunmamaktadır.</p>
+            </div>
+        }
+    </div>
+</div>
+
+
+

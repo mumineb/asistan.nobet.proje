@@ -1,0 +1,959 @@
+﻿<Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\EntityFramework.6.4.4\build\EntityFramework.props" Condition="Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.props')" />
+  <Import Project="..\packages\Microsoft.TypeScript.MSBuild.5.7.1\build\Microsoft.TypeScript.MSBuild.props" Condition="Exists('..\packages\Microsoft.TypeScript.MSBuild.5.7.1\build\Microsoft.TypeScript.MSBuild.props')" />
+  <Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{4CB84412-DE19-4201-9F26-17B1DC01AA22}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>PediatriAsistanNöbet1</RootNamespace>
+    <AssemblyName>PediatriAsistanNöbet1</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <UseIISExpress>true</UseIISExpress>
+    <Use64BitIISExpress />
+    <IISExpressSSLPort>
+    </IISExpressSSLPort>
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="System.Web.Razor">
+      <HintPath>..\packages\Microsoft.AspNet.Razor.3.2.9\lib\net45\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Webpages">
+      <HintPath>..\packages\Microsoft.AspNet.Webpages.3.2.9\lib\net45\System.Web.Webpages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Webpages.Deployment">
+      <HintPath>..\packages\Microsoft.AspNet.Webpages.3.2.9\lib\net45\System.Web.Webpages.Deployment.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Webpages.Razor">
+      <HintPath>..\packages\Microsoft.AspNet.Webpages.3.2.9\lib\net45\System.Web.Webpages.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Helpers">
+      <HintPath>..\packages\Microsoft.AspNet.Webpages.3.2.9\lib\net45\System.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Web.Infrastructure">
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.2.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Mvc">
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.2.9\lib\net45\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform">
+      <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\AdminLayout\assets\css\style.css" />
+    <Content Include="Content\AdminLayout\assets\img\apple-touch-icon.png" />
+    <Content Include="Content\AdminLayout\assets\img\favicon.png" />
+    <Content Include="Content\AdminLayout\assets\img\logo.png" />
+    <Content Include="Content\AdminLayout\assets\img\not-found.svg" />
+    <Content Include="Content\AdminLayout\assets\img\profile-img.jpg" />
+    <Content Include="Content\AdminLayout\assets\js\main.js" />
+    <Content Include="Content\AdminLayout\assets\vendor\apexcharts\apexcharts.amd.js" />
+    <Content Include="Content\AdminLayout\assets\vendor\apexcharts\apexcharts.common.js" />
+    <Content Include="Content\AdminLayout\assets\vendor\apexcharts\apexcharts.css" />
+    <Content Include="Content\AdminLayout\assets\vendor\apexcharts\apexcharts.esm.js" />
+    <Content Include="Content\AdminLayout\assets\vendor\apexcharts\apexcharts.js" />
+    <Content Include="Content\AdminLayout\assets\vendor\apexcharts\apexcharts.min.js" />
+    <Content Include="Content\AdminLayout\assets\vendor\bootstrap-icons\bootstrap-icons.css" />
+    <Content Include="Content\AdminLayout\assets\vendor\bootstrap-icons\bootstrap-icons.min.css" />
+    <Content Include="Content\AdminLayout\assets\vendor\bootstrap\css\bootstrap-grid.css" />
+    <Content Include="Content\AdminLayout\assets\vendor\bootstrap\css\bootstrap-grid.min.css" />
+    <Content Include="Content\AdminLayout\assets\vendor\bootstrap\css\bootstrap-grid.rtl.css" />
+    <Content Include="Content\AdminLayout\assets\vendor\bootstrap\css\bootstrap-grid.rtl.min.css" />
+    <Content Include="Content\AdminLayout\assets\vendor\bootstrap\css\bootstrap-reboot.css" />
+    <Content Include="Content\AdminLayout\assets\vendor\bootstrap\css\bootstrap-reboot.min.css" />
+    <Content Include="Content\AdminLayout\assets\vendor\bootstrap\css\bootstrap-reboot.rtl.css" />
+    <Content Include="Content\AdminLayout\assets\vendor\bootstrap\css\bootstrap-reboot.rtl.min.css" />
+    <Content Include="Content\AdminLayout\assets\vendor\bootstrap\css\bootstrap-utilities.css" />
+    <Content Include="Content\AdminLayout\assets\vendor\bootstrap\css\bootstrap-utilities.min.css" />
+    <Content Include="Content\AdminLayout\assets\vendor\bootstrap\css\bootstrap-utilities.rtl.css" />
+    <Content Include="Content\AdminLayout\assets\vendor\bootstrap\css\bootstrap-utilities.rtl.min.css" />
+    <Content Include="Content\AdminLayout\assets\vendor\bootstrap\css\bootstrap.css" />
+    <Content Include="Content\AdminLayout\assets\vendor\bootstrap\css\bootstrap.min.css" />
+    <Content Include="Content\AdminLayout\assets\vendor\bootstrap\css\bootstrap.rtl.css" />
+    <Content Include="Content\AdminLayout\assets\vendor\bootstrap\css\bootstrap.rtl.min.css" />
+    <Content Include="Content\AdminLayout\assets\vendor\bootstrap\css\prb.txt" />
+    <Content Include="Content\AdminLayout\assets\vendor\bootstrap\js\bootstrap.bundle.js" />
+    <Content Include="Content\AdminLayout\assets\vendor\bootstrap\js\bootstrap.bundle.min.js" />
+    <Content Include="Content\AdminLayout\assets\vendor\bootstrap\js\bootstrap.esm.js" />
+    <Content Include="Content\AdminLayout\assets\vendor\bootstrap\js\bootstrap.esm.min.js" />
+    <Content Include="Content\AdminLayout\assets\vendor\bootstrap\js\bootstrap.js" />
+    <Content Include="Content\AdminLayout\assets\vendor\bootstrap\js\bootstrap.min.js" />
+    <Content Include="Content\AdminLayout\assets\vendor\boxicons\css\animations.css" />
+    <Content Include="Content\AdminLayout\assets\vendor\boxicons\css\boxicons.css" />
+    <Content Include="Content\AdminLayout\assets\vendor\boxicons\css\boxicons.min.css" />
+    <Content Include="Content\AdminLayout\assets\vendor\boxicons\css\transformations.css" />
+    <Content Include="Content\AdminLayout\assets\vendor\boxicons\fonts\boxicons.svg" />
+    <Content Include="Content\AdminLayout\assets\vendor\php-email-form\validate.js" />
+    <Content Include="Content\AdminLayout\assets\vendor\quill\quill.bubble.css" />
+    <Content Include="Content\AdminLayout\assets\vendor\quill\quill.core.css" />
+    <Content Include="Content\AdminLayout\assets\vendor\quill\quill.core.js" />
+    <Content Include="Content\AdminLayout\assets\vendor\quill\quill.core.js.LICENSE.txt" />
+    <Content Include="Content\AdminLayout\assets\vendor\quill\quill.js" />
+    <Content Include="Content\AdminLayout\assets\vendor\quill\quill.js.LICENSE.txt" />
+    <Content Include="Content\AdminLayout\assets\vendor\quill\quill.snow.css" />
+    <Content Include="Content\AdminLayout\assets\vendor\remixicon\remixicon.css" />
+    <Content Include="Content\AdminLayout\assets\vendor\remixicon\remixicon.svg" />
+    <Content Include="Content\AdminLayout\assets\vendor\remixicon\remixicon.symbol.svg" />
+    <Content Include="Content\AdminLayout\assets\vendor\simple-datatables\simple-datatables.js" />
+    <Content Include="Content\AdminLayout\assets\vendor\simple-datatables\style.css" />
+    <Content Include="Content\AdminLayout\assets\vendor\tinymce\icons\default\icons.js" />
+    <Content Include="Content\AdminLayout\assets\vendor\tinymce\icons\default\icons.min.js" />
+    <Content Include="Content\AdminLayout\assets\vendor\tinymce\icons\default\index.js" />
+    <Content Include="Content\AdminLayout\assets\vendor\tinymce\models\dom\index.js" />
+    <Content Include="Content\AdminLayout\assets\vendor\tinymce\models\dom\model.js" />
+    <Content Include="Content\AdminLayout\assets\vendor\tinymce\models\dom\model.min.js" />
+    <Content Include="Content\AdminLayout\assets\vendor\tinymce\plugins\accordion\index.js" />
+    <Content Include="Content\AdminLayout\assets\vendor\tinymce\plugins\accordion\plugin.js" />
+    <Content Include="Content\AdminLayout\assets\vendor\tinymce\plugins\accordion\plugin.min.js" />
+    <Content Include="Content\AdminLayout\assets\vendor\tinymce\plugins\advlist\index.js" />
+    <Content Include="Content\AdminLayout\assets\vendor\tinymce\plugins\advlist\plugin.js" />
+    <Content Include="Content\AdminLayout\assets\vendor\tinymce\plugins\advlist\plugin.min.js" />
+    <Content Include="Content\AdminLayout\assets\vendor\tinymce\plugins\anchor\index.js" />
+    <Content Include="Content\AdminLayout\assets\vendor\tinymce\plugins\anchor\plugin.js" />
+    <Content Include="Content\AdminLayout\assets\vendor\tinymce\plugins\anchor\plugin.min.js" />
+    <Content Include="Content\AdminLayout\assets\vendor\tinymce\plugins\autolink\index.js" />
+    <Content Include="Content\AdminLayout\assets\vendor\tinymce\plugins\autolink\plugin.js" />
+    <Content Include="Content\AdminLayout\assets\vendor\tinymce\plugins\autolink\plugin.min.js" />
+    <Content Include="Content\AdminLayout\assets\vendor\tinymce\plugins\autoresize\index.js" />
+    <Content Include="Content\AdminLayout\assets\vendor\tinymce\plugins\autoresize\plugin.js" />
+    <Content Include="Content\AdminLayout\assets\vendor\tinymce\plugins\autoresize\plugin.min.js" />
+    <Content Include="Content\AdminLayout\assets\vendor\tinymce\plugins\autosave\index.js" />
+    <Content Include="Content\AdminLayout\assets\vendor\tinymce\plugins\autosave\plugin.js" />
+    <Content Include="Content\AdminLayout\assets\vendor\tinymce\plugins\autosave\plugin.min.js" />
+    <Content Include="Content\AdminLayout\assets\vendor\tinymce\plugins\charmap\index.js" />
+    <Content Include="Content\AdminLayout\assets\vendor\tinymce\plugins\charmap\plugin.js" />
+    <Content Include="Content\AdminLayout\assets\vendor\tinymce\plugins\charmap\plugin.min.js" />
+    <Content Include="Content\AdminLayout\assets\vendor\tinymce\plugins\codesample\index.js" />
+    <Content Include="Content\AdminLayout\assets\vendor\tinymce\plugins\codesample\plugin.js" />
+    <Content Include="Content\AdminLayout\assets\vendor\tinymce\plugins\codesample\plugin.min.js" />
+    <Content Include="Content\AdminLayout\assets\vendor\tinymce\plugins\code\index.js" />
+    <Content Include="Content\AdminLayout\assets\vendor\tinymce\plugins\code\plugin.js" />
+    <Content Include="Content\AdminLayout\assets\vendor\tinymce\plugins\code\plugin.min.js" />
+    <Content Include="Content\AdminLayout\assets\vendor\tinymce\plugins\directionality\index.js" />
+    <Content Include="Content\AdminLayout\assets\vendor\tinymce\plugins\directionality\plugin.js" />
+    <Content Include="Content\AdminLayout\assets\vendor\tinymce\plugins\directionality\plugin.min.js" />
+    <Content Include="Content\AdminLayout\assets\vendor\tinymce\plugins\emoticons\index.js" />
+    <Content Include="Content\AdminLayout\assets\vendor\tinymce\plugins\emoticons\js\emojiimages.js" />
+    <Content Include="Content\AdminLayout\assets\vendor\tinymce\plugins\emoticons\js\emojiimages.min.js" />
+    <Content Include="Content\AdminLayout\assets\vendor\tinymce\plugins\emoticons\js\emojis.js" />
+    <Content Include="Content\AdminLayout\assets\vendor\tinymce\plugins\emoticons\js\emojis.min.js" />
+    <Content Include="Content\AdminLayout\assets\vendor\tinymce\plugins\emoticons\plugin.js" />
+    <Content Include="Content\AdminLayout\assets\vendor\tinymce\plugins\emoticons\plugin.min.js" />
+    <Content Include="Content\AdminLayout\assets\vendor\tinymce\plugins\fullscreen\index.js" />
+    <Content Include="Content\AdminLayout\assets\vendor\tinymce\plugins\fullscreen\plugin.js" />
+    <Content Include="Content\AdminLayout\assets\vendor\tinymce\plugins\fullscreen\plugin.min.js" />
+    <Content Include="Content\AdminLayout\assets\vendor\tinymce\plugins\help\index.js" />
+    <Content Include="Content\AdminLayout\assets\vendor\tinymce\plugins\help\js\i18n\keynav\ar.js" />
+    <Content Include="Content\AdminLayout\assets\vendor\tinymce\plugins\help\js\i18n\keynav\bg_BG.js" />
+    <Content Include="Content\AdminLayout\assets\vendor\tinymce\plugins\help\js\i18n\keynav\ca.js" />
+    <Content Include="Content\AdminLayout\assets\vendor\tinymce\plugins\help\js\i18n\keynav\cs.js" />
+    <Content Include="Content\AdminLayout\assets\vendor\tinymce\plugins\help\js\i18n\keynav\da.js" />
+    <Content Include="Content\AdminLayout\assets\vendor\tinymce\plugins\help\js\i18n\keynav\de.js" />
+    <Content Include="Content\AdminLayout\assets\vendor\tinymce\plugins\help\js\i18n\keynav\el.js" />
+    <Content Include="Content\AdminLayout\assets\vendor\tinymce\plugins\help\js\i18n\keynav\en.js" />
+    <Content Include="Content\AdminLayout\assets\vendor\tinymce\plugins\help\js\i18n\keynav\es.js" />
+    <Content Include="Content\AdminLayout\assets\vendor\tinymce\plugins\help\js\i18n\keynav\eu.js" />
+    <Content Include="Content\AdminLayout\assets\vendor\tinymce\plugins\help\js\i18n\keynav\fa.js" />
+    <Content Include="Content\AdminLayout\assets\vendor\tinymce\plugins\help\js\i18n\keynav\fi.js" />
+    <Content Include="Content\AdminLayout\assets\vendor\tinymce\plugins\help\js\i18n\keynav\fr_FR.js" />
+    <Content Include="Content\AdminLayout\assets\vendor\tinymce\plugins\help\js\i18n\keynav\he_IL.js" />
+    <Content Include="Content\AdminLayout\assets\vendor\tinymce\plugins\help\js\i18n\keynav\hi.js" />
+    <Content Include="Content\AdminLayout\assets\vendor\tinymce\plugins\help\js\i18n\keynav\hr.js" />
+    <Content Include="Content\AdminLayout\assets\vendor\tinymce\plugins\help\js\i18n\keynav\hu_HU.js" />
+    <Content Include="Content\AdminLayout\assets\vendor\tinymce\plugins\help\js\i18n\keynav\id.js" />
+    <Content Include="Content\AdminLayout\assets\vendor\tinymce\plugins\help\js\i18n\keynav\it.js" />
+    <Content Include="Content\AdminLayout\assets\vendor\tinymce\plugins\help\js\i18n\keynav\ja.js" />
+    <Content Include="Content\AdminLayout\assets\vendor\tinymce\plugins\help\js\i18n\keynav\kk.js" />
+    <Content Include="Content\AdminLayout\assets\vendor\tinymce\plugins\help\js\i18n\keynav\ko_KR.js" />
+    <Content Include="Content\AdminLayout\assets\vendor\tinymce\plugins\help\js\i18n\keynav\ms.js" />
+    <Content Include="Content\AdminLayout\assets\vendor\tinymce\plugins\help\js\i18n\keynav\nb_NO.js" />
+    <Content Include="Content\AdminLayout\assets\vendor\tinymce\plugins\help\js\i18n\keynav\nl.js" />
+    <Content Include="Content\AdminLayout\assets\vendor\tinymce\plugins\help\js\i18n\keynav\pl.js" />
+    <Content Include="Content\AdminLayout\assets\vendor\tinymce\plugins\help\js\i18n\keynav\pt_BR.js" />
+    <Content Include="Content\AdminLayout\assets\vendor\tinymce\plugins\help\js\i18n\keynav\pt_PT.js" />
+    <Content Include="Content\AdminLayout\assets\vendor\tinymce\plugins\help\js\i18n\keynav\ro.js" />
+    <Content Include="Content\AdminLayout\assets\vendor\tinymce\plugins\help\js\i18n\keynav\ru.js" />
+    <Content Include="Content\AdminLayout\assets\vendor\tinymce\plugins\help\js\i18n\keynav\sk.js" />
+    <Content Include="Content\AdminLayout\assets\vendor\tinymce\plugins\help\js\i18n\keynav\sl_SI.js" />
+    <Content Include="Content\AdminLayout\assets\vendor\tinymce\plugins\help\js\i18n\keynav\sv_SE.js" />
+    <Content Include="Content\AdminLayout\assets\vendor\tinymce\plugins\help\js\i18n\keynav\th_TH.js" />
+    <Content Include="Content\AdminLayout\assets\vendor\tinymce\plugins\help\js\i18n\keynav\tr.js" />
+    <Content Include="Content\AdminLayout\assets\vendor\tinymce\plugins\help\js\i18n\keynav\uk.js" />
+    <Content Include="Content\AdminLayout\assets\vendor\tinymce\plugins\help\js\i18n\keynav\vi.js" />
+    <Content Include="Content\AdminLayout\assets\vendor\tinymce\plugins\help\js\i18n\keynav\zh_CN.js" />
+    <Content Include="Content\AdminLayout\assets\vendor\tinymce\plugins\help\js\i18n\keynav\zh_TW.js" />
+    <Content Include="Content\AdminLayout\assets\vendor\tinymce\plugins\help\plugin.js" />
+    <Content Include="Content\AdminLayout\assets\vendor\tinymce\plugins\help\plugin.min.js" />
+    <Content Include="Content\AdminLayout\assets\vendor\tinymce\plugins\image\index.js" />
+    <Content Include="Content\AdminLayout\assets\vendor\tinymce\plugins\image\plugin.js" />
+    <Content Include="Content\AdminLayout\assets\vendor\tinymce\plugins\image\plugin.min.js" />
+    <Content Include="Content\AdminLayout\assets\vendor\tinymce\plugins\importcss\index.js" />
+    <Content Include="Content\AdminLayout\assets\vendor\tinymce\plugins\importcss\plugin.js" />
+    <Content Include="Content\AdminLayout\assets\vendor\tinymce\plugins\importcss\plugin.min.js" />
+    <Content Include="Content\AdminLayout\assets\vendor\tinymce\plugins\insertdatetime\index.js" />
+    <Content Include="Content\AdminLayout\assets\vendor\tinymce\plugins\insertdatetime\plugin.js" />
+    <Content Include="Content\AdminLayout\assets\vendor\tinymce\plugins\insertdatetime\plugin.min.js" />
+    <Content Include="Content\AdminLayout\assets\vendor\tinymce\plugins\link\index.js" />
+    <Content Include="Content\AdminLayout\assets\vendor\tinymce\plugins\link\plugin.js" />
+    <Content Include="Content\AdminLayout\assets\vendor\tinymce\plugins\link\plugin.min.js" />
+    <Content Include="Content\AdminLayout\assets\vendor\tinymce\plugins\lists\index.js" />
+    <Content Include="Content\AdminLayout\assets\vendor\tinymce\plugins\lists\plugin.js" />
+    <Content Include="Content\AdminLayout\assets\vendor\tinymce\plugins\lists\plugin.min.js" />
+    <Content Include="Content\AdminLayout\assets\vendor\tinymce\plugins\media\index.js" />
+    <Content Include="Content\AdminLayout\assets\vendor\tinymce\plugins\media\plugin.js" />
+    <Content Include="Content\AdminLayout\assets\vendor\tinymce\plugins\media\plugin.min.js" />
+    <Content Include="Content\AdminLayout\assets\vendor\tinymce\plugins\nonbreaking\index.js" />
+    <Content Include="Content\AdminLayout\assets\vendor\tinymce\plugins\nonbreaking\plugin.js" />
+    <Content Include="Content\AdminLayout\assets\vendor\tinymce\plugins\nonbreaking\plugin.min.js" />
+    <Content Include="Content\AdminLayout\assets\vendor\tinymce\plugins\pagebreak\index.js" />
+    <Content Include="Content\AdminLayout\assets\vendor\tinymce\plugins\pagebreak\plugin.js" />
+    <Content Include="Content\AdminLayout\assets\vendor\tinymce\plugins\pagebreak\plugin.min.js" />
+    <Content Include="Content\AdminLayout\assets\vendor\tinymce\plugins\preview\index.js" />
+    <Content Include="Content\AdminLayout\assets\vendor\tinymce\plugins\preview\plugin.js" />
+    <Content Include="Content\AdminLayout\assets\vendor\tinymce\plugins\preview\plugin.min.js" />
+    <Content Include="Content\AdminLayout\assets\vendor\tinymce\plugins\quickbars\index.js" />
+    <Content Include="Content\AdminLayout\assets\vendor\tinymce\plugins\quickbars\plugin.js" />
+    <Content Include="Content\AdminLayout\assets\vendor\tinymce\plugins\quickbars\plugin.min.js" />
+    <Content Include="Content\AdminLayout\assets\vendor\tinymce\plugins\save\index.js" />
+    <Content Include="Content\AdminLayout\assets\vendor\tinymce\plugins\save\plugin.js" />
+    <Content Include="Content\AdminLayout\assets\vendor\tinymce\plugins\save\plugin.min.js" />
+    <Content Include="Content\AdminLayout\assets\vendor\tinymce\plugins\searchreplace\index.js" />
+    <Content Include="Content\AdminLayout\assets\vendor\tinymce\plugins\searchreplace\plugin.js" />
+    <Content Include="Content\AdminLayout\assets\vendor\tinymce\plugins\searchreplace\plugin.min.js" />
+    <Content Include="Content\AdminLayout\assets\vendor\tinymce\plugins\table\index.js" />
+    <Content Include="Content\AdminLayout\assets\vendor\tinymce\plugins\table\plugin.js" />
+    <Content Include="Content\AdminLayout\assets\vendor\tinymce\plugins\table\plugin.min.js" />
+    <Content Include="Content\AdminLayout\assets\vendor\tinymce\plugins\visualblocks\index.js" />
+    <Content Include="Content\AdminLayout\assets\vendor\tinymce\plugins\visualblocks\plugin.js" />
+    <Content Include="Content\AdminLayout\assets\vendor\tinymce\plugins\visualblocks\plugin.min.js" />
+    <Content Include="Content\AdminLayout\assets\vendor\tinymce\plugins\visualchars\index.js" />
+    <Content Include="Content\AdminLayout\assets\vendor\tinymce\plugins\visualchars\plugin.js" />
+    <Content Include="Content\AdminLayout\assets\vendor\tinymce\plugins\visualchars\plugin.min.js" />
+    <Content Include="Content\AdminLayout\assets\vendor\tinymce\plugins\wordcount\index.js" />
+    <Content Include="Content\AdminLayout\assets\vendor\tinymce\plugins\wordcount\plugin.js" />
+    <Content Include="Content\AdminLayout\assets\vendor\tinymce\plugins\wordcount\plugin.min.js" />
+    <Content Include="Content\AdminLayout\assets\vendor\tinymce\skins\content\dark\content.css" />
+    <Content Include="Content\AdminLayout\assets\vendor\tinymce\skins\content\dark\content.js" />
+    <Content Include="Content\AdminLayout\assets\vendor\tinymce\skins\content\dark\content.min.css" />
+    <Content Include="Content\AdminLayout\assets\vendor\tinymce\skins\content\default\content.css" />
+    <Content Include="Content\AdminLayout\assets\vendor\tinymce\skins\content\default\content.js" />
+    <Content Include="Content\AdminLayout\assets\vendor\tinymce\skins\content\default\content.min.css" />
+    <Content Include="Content\AdminLayout\assets\vendor\tinymce\skins\content\document\content.css" />
+    <Content Include="Content\AdminLayout\assets\vendor\tinymce\skins\content\document\content.js" />
+    <Content Include="Content\AdminLayout\assets\vendor\tinymce\skins\content\document\content.min.css" />
+    <Content Include="Content\AdminLayout\assets\vendor\tinymce\skins\content\tinymce-5-dark\content.css" />
+    <Content Include="Content\AdminLayout\assets\vendor\tinymce\skins\content\tinymce-5-dark\content.js" />
+    <Content Include="Content\AdminLayout\assets\vendor\tinymce\skins\content\tinymce-5-dark\content.min.css" />
+    <Content Include="Content\AdminLayout\assets\vendor\tinymce\skins\content\tinymce-5\content.css" />
+    <Content Include="Content\AdminLayout\assets\vendor\tinymce\skins\content\tinymce-5\content.js" />
+    <Content Include="Content\AdminLayout\assets\vendor\tinymce\skins\content\tinymce-5\content.min.css" />
+    <Content Include="Content\AdminLayout\assets\vendor\tinymce\skins\content\writer\content.css" />
+    <Content Include="Content\AdminLayout\assets\vendor\tinymce\skins\content\writer\content.js" />
+    <Content Include="Content\AdminLayout\assets\vendor\tinymce\skins\content\writer\content.min.css" />
+    <Content Include="Content\AdminLayout\assets\vendor\tinymce\skins\ui\oxide-dark\content.css" />
+    <Content Include="Content\AdminLayout\assets\vendor\tinymce\skins\ui\oxide-dark\content.inline.css" />
+    <Content Include="Content\AdminLayout\assets\vendor\tinymce\skins\ui\oxide-dark\content.inline.js" />
+    <Content Include="Content\AdminLayout\assets\vendor\tinymce\skins\ui\oxide-dark\content.inline.min.css" />
+    <Content Include="Content\AdminLayout\assets\vendor\tinymce\skins\ui\oxide-dark\content.js" />
+    <Content Include="Content\AdminLayout\assets\vendor\tinymce\skins\ui\oxide-dark\content.min.css" />
+    <Content Include="Content\AdminLayout\assets\vendor\tinymce\skins\ui\oxide-dark\skin.css" />
+    <Content Include="Content\AdminLayout\assets\vendor\tinymce\skins\ui\oxide-dark\skin.js" />
+    <Content Include="Content\AdminLayout\assets\vendor\tinymce\skins\ui\oxide-dark\skin.min.css" />
+    <Content Include="Content\AdminLayout\assets\vendor\tinymce\skins\ui\oxide-dark\skin.shadowdom.css" />
+    <Content Include="Content\AdminLayout\assets\vendor\tinymce\skins\ui\oxide-dark\skin.shadowdom.js" />
+    <Content Include="Content\AdminLayout\assets\vendor\tinymce\skins\ui\oxide-dark\skin.shadowdom.min.css" />
+    <Content Include="Content\AdminLayout\assets\vendor\tinymce\skins\ui\oxide\content.css" />
+    <Content Include="Content\AdminLayout\assets\vendor\tinymce\skins\ui\oxide\content.inline.css" />
+    <Content Include="Content\AdminLayout\assets\vendor\tinymce\skins\ui\oxide\content.inline.js" />
+    <Content Include="Content\AdminLayout\assets\vendor\tinymce\skins\ui\oxide\content.inline.min.css" />
+    <Content Include="Content\AdminLayout\assets\vendor\tinymce\skins\ui\oxide\content.js" />
+    <Content Include="Content\AdminLayout\assets\vendor\tinymce\skins\ui\oxide\content.min.css" />
+    <Content Include="Content\AdminLayout\assets\vendor\tinymce\skins\ui\oxide\skin.css" />
+    <Content Include="Content\AdminLayout\assets\vendor\tinymce\skins\ui\oxide\skin.js" />
+    <Content Include="Content\AdminLayout\assets\vendor\tinymce\skins\ui\oxide\skin.min.css" />
+    <Content Include="Content\AdminLayout\assets\vendor\tinymce\skins\ui\oxide\skin.shadowdom.css" />
+    <Content Include="Content\AdminLayout\assets\vendor\tinymce\skins\ui\oxide\skin.shadowdom.js" />
+    <Content Include="Content\AdminLayout\assets\vendor\tinymce\skins\ui\oxide\skin.shadowdom.min.css" />
+    <Content Include="Content\AdminLayout\assets\vendor\tinymce\skins\ui\tinymce-5-dark\content.css" />
+    <Content Include="Content\AdminLayout\assets\vendor\tinymce\skins\ui\tinymce-5-dark\content.inline.css" />
+    <Content Include="Content\AdminLayout\assets\vendor\tinymce\skins\ui\tinymce-5-dark\content.inline.js" />
+    <Content Include="Content\AdminLayout\assets\vendor\tinymce\skins\ui\tinymce-5-dark\content.inline.min.css" />
+    <Content Include="Content\AdminLayout\assets\vendor\tinymce\skins\ui\tinymce-5-dark\content.js" />
+    <Content Include="Content\AdminLayout\assets\vendor\tinymce\skins\ui\tinymce-5-dark\content.min.css" />
+    <Content Include="Content\AdminLayout\assets\vendor\tinymce\skins\ui\tinymce-5-dark\skin.css" />
+    <Content Include="Content\AdminLayout\assets\vendor\tinymce\skins\ui\tinymce-5-dark\skin.js" />
+    <Content Include="Content\AdminLayout\assets\vendor\tinymce\skins\ui\tinymce-5-dark\skin.min.css" />
+    <Content Include="Content\AdminLayout\assets\vendor\tinymce\skins\ui\tinymce-5-dark\skin.shadowdom.css" />
+    <Content Include="Content\AdminLayout\assets\vendor\tinymce\skins\ui\tinymce-5-dark\skin.shadowdom.js" />
+    <Content Include="Content\AdminLayout\assets\vendor\tinymce\skins\ui\tinymce-5-dark\skin.shadowdom.min.css" />
+    <Content Include="Content\AdminLayout\assets\vendor\tinymce\skins\ui\tinymce-5\content.css" />
+    <Content Include="Content\AdminLayout\assets\vendor\tinymce\skins\ui\tinymce-5\content.inline.css" />
+    <Content Include="Content\AdminLayout\assets\vendor\tinymce\skins\ui\tinymce-5\content.inline.js" />
+    <Content Include="Content\AdminLayout\assets\vendor\tinymce\skins\ui\tinymce-5\content.inline.min.css" />
+    <Content Include="Content\AdminLayout\assets\vendor\tinymce\skins\ui\tinymce-5\content.js" />
+    <Content Include="Content\AdminLayout\assets\vendor\tinymce\skins\ui\tinymce-5\content.min.css" />
+    <Content Include="Content\AdminLayout\assets\vendor\tinymce\skins\ui\tinymce-5\skin.css" />
+    <Content Include="Content\AdminLayout\assets\vendor\tinymce\skins\ui\tinymce-5\skin.js" />
+    <Content Include="Content\AdminLayout\assets\vendor\tinymce\skins\ui\tinymce-5\skin.min.css" />
+    <Content Include="Content\AdminLayout\assets\vendor\tinymce\skins\ui\tinymce-5\skin.shadowdom.css" />
+    <Content Include="Content\AdminLayout\assets\vendor\tinymce\skins\ui\tinymce-5\skin.shadowdom.js" />
+    <Content Include="Content\AdminLayout\assets\vendor\tinymce\skins\ui\tinymce-5\skin.shadowdom.min.css" />
+    <Content Include="Content\AdminLayout\assets\vendor\tinymce\themes\silver\index.js" />
+    <Content Include="Content\AdminLayout\assets\vendor\tinymce\themes\silver\theme.js" />
+    <Content Include="Content\AdminLayout\assets\vendor\tinymce\themes\silver\theme.min.js" />
+    <Content Include="Content\AdminLayout\assets\vendor\tinymce\tinymce.js" />
+    <Content Include="Content\AdminLayout\assets\vendor\tinymce\tinymce.min.js" />
+    <Content Include="Content\AdminLayout\forms\Readme.txt" />
+    <Content Include="Content\bootstrap-grid.css" />
+    <Content Include="Content\bootstrap-grid.min.css" />
+    <Content Include="Content\bootstrap-grid.rtl.css" />
+    <Content Include="Content\bootstrap-grid.rtl.min.css" />
+    <Content Include="Content\bootstrap-reboot.css" />
+    <Content Include="Content\bootstrap-reboot.min.css" />
+    <Content Include="Content\bootstrap-reboot.rtl.css" />
+    <Content Include="Content\bootstrap-reboot.rtl.min.css" />
+    <Content Include="Content\bootstrap-utilities.css" />
+    <Content Include="Content\bootstrap-utilities.min.css" />
+    <Content Include="Content\bootstrap-utilities.rtl.css" />
+    <Content Include="Content\bootstrap-utilities.rtl.min.css" />
+    <Content Include="Content\bootstrap.css" />
+    <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\bootstrap.rtl.css" />
+    <Content Include="Content\bootstrap.rtl.min.css" />
+    <Content Include="Content\fullcalendar\dist\index.global.js" />
+    <Content Include="Content\fullcalendar\dist\index.global.min.js" />
+    <Content Include="Content\fullcalendar\examples\background-events.html" />
+    <Content Include="Content\fullcalendar\examples\daygrid-views.html" />
+    <Content Include="Content\fullcalendar\examples\external-dragging-2cals.html" />
+    <Content Include="Content\fullcalendar\examples\external-dragging-builtin.html" />
+    <Content Include="Content\fullcalendar\examples\full-height.html" />
+    <Content Include="Content\fullcalendar\examples\list-sticky-header.html" />
+    <Content Include="Content\fullcalendar\examples\list-views.html" />
+    <Content Include="Content\fullcalendar\examples\month-view.html" />
+    <Content Include="Content\fullcalendar\examples\multimonth-view.html" />
+    <Content Include="Content\fullcalendar\examples\multiweek-view.html" />
+    <Content Include="Content\fullcalendar\examples\natural-height.html" />
+    <Content Include="Content\fullcalendar\examples\selectable.html" />
+    <Content Include="Content\fullcalendar\examples\timegrid-views-modal.html" />
+    <Content Include="Content\fullcalendar\examples\timegrid-views.html" />
+    <Content Include="Content\fullcalendar\packages\bootstrap4\index.global.js" />
+    <Content Include="Content\fullcalendar\packages\bootstrap4\index.global.min.js" />
+    <Content Include="Content\fullcalendar\packages\bootstrap5\index.global.js" />
+    <Content Include="Content\fullcalendar\packages\bootstrap5\index.global.min.js" />
+    <Content Include="Content\fullcalendar\packages\core\index.global.js" />
+    <Content Include="Content\fullcalendar\packages\core\index.global.min.js" />
+    <Content Include="Content\fullcalendar\packages\core\locales-all.global.js" />
+    <Content Include="Content\fullcalendar\packages\core\locales-all.global.min.js" />
+    <Content Include="Content\fullcalendar\packages\core\locales\af.global.js" />
+    <Content Include="Content\fullcalendar\packages\core\locales\af.global.min.js" />
+    <Content Include="Content\fullcalendar\packages\core\locales\ar-dz.global.js" />
+    <Content Include="Content\fullcalendar\packages\core\locales\ar-dz.global.min.js" />
+    <Content Include="Content\fullcalendar\packages\core\locales\ar-kw.global.js" />
+    <Content Include="Content\fullcalendar\packages\core\locales\ar-kw.global.min.js" />
+    <Content Include="Content\fullcalendar\packages\core\locales\ar-ly.global.js" />
+    <Content Include="Content\fullcalendar\packages\core\locales\ar-ly.global.min.js" />
+    <Content Include="Content\fullcalendar\packages\core\locales\ar-ma.global.js" />
+    <Content Include="Content\fullcalendar\packages\core\locales\ar-ma.global.min.js" />
+    <Content Include="Content\fullcalendar\packages\core\locales\ar-sa.global.js" />
+    <Content Include="Content\fullcalendar\packages\core\locales\ar-sa.global.min.js" />
+    <Content Include="Content\fullcalendar\packages\core\locales\ar-tn.global.js" />
+    <Content Include="Content\fullcalendar\packages\core\locales\ar-tn.global.min.js" />
+    <Content Include="Content\fullcalendar\packages\core\locales\ar.global.js" />
+    <Content Include="Content\fullcalendar\packages\core\locales\ar.global.min.js" />
+    <Content Include="Content\fullcalendar\packages\core\locales\az.global.js" />
+    <Content Include="Content\fullcalendar\packages\core\locales\az.global.min.js" />
+    <Content Include="Content\fullcalendar\packages\core\locales\bg.global.js" />
+    <Content Include="Content\fullcalendar\packages\core\locales\bg.global.min.js" />
+    <Content Include="Content\fullcalendar\packages\core\locales\bn.global.js" />
+    <Content Include="Content\fullcalendar\packages\core\locales\bn.global.min.js" />
+    <Content Include="Content\fullcalendar\packages\core\locales\bs.global.js" />
+    <Content Include="Content\fullcalendar\packages\core\locales\bs.global.min.js" />
+    <Content Include="Content\fullcalendar\packages\core\locales\ca.global.js" />
+    <Content Include="Content\fullcalendar\packages\core\locales\ca.global.min.js" />
+    <Content Include="Content\fullcalendar\packages\core\locales\cs.global.js" />
+    <Content Include="Content\fullcalendar\packages\core\locales\cs.global.min.js" />
+    <Content Include="Content\fullcalendar\packages\core\locales\cy.global.js" />
+    <Content Include="Content\fullcalendar\packages\core\locales\cy.global.min.js" />
+    <Content Include="Content\fullcalendar\packages\core\locales\da.global.js" />
+    <Content Include="Content\fullcalendar\packages\core\locales\da.global.min.js" />
+    <Content Include="Content\fullcalendar\packages\core\locales\de-at.global.js" />
+    <Content Include="Content\fullcalendar\packages\core\locales\de-at.global.min.js" />
+    <Content Include="Content\fullcalendar\packages\core\locales\de.global.js" />
+    <Content Include="Content\fullcalendar\packages\core\locales\de.global.min.js" />
+    <Content Include="Content\fullcalendar\packages\core\locales\el.global.js" />
+    <Content Include="Content\fullcalendar\packages\core\locales\el.global.min.js" />
+    <Content Include="Content\fullcalendar\packages\core\locales\en-au.global.js" />
+    <Content Include="Content\fullcalendar\packages\core\locales\en-au.global.min.js" />
+    <Content Include="Content\fullcalendar\packages\core\locales\en-gb.global.js" />
+    <Content Include="Content\fullcalendar\packages\core\locales\en-gb.global.min.js" />
+    <Content Include="Content\fullcalendar\packages\core\locales\en-nz.global.js" />
+    <Content Include="Content\fullcalendar\packages\core\locales\en-nz.global.min.js" />
+    <Content Include="Content\fullcalendar\packages\core\locales\eo.global.js" />
+    <Content Include="Content\fullcalendar\packages\core\locales\eo.global.min.js" />
+    <Content Include="Content\fullcalendar\packages\core\locales\es-us.global.js" />
+    <Content Include="Content\fullcalendar\packages\core\locales\es-us.global.min.js" />
+    <Content Include="Content\fullcalendar\packages\core\locales\es.global.js" />
+    <Content Include="Content\fullcalendar\packages\core\locales\es.global.min.js" />
+    <Content Include="Content\fullcalendar\packages\core\locales\et.global.js" />
+    <Content Include="Content\fullcalendar\packages\core\locales\et.global.min.js" />
+    <Content Include="Content\fullcalendar\packages\core\locales\eu.global.js" />
+    <Content Include="Content\fullcalendar\packages\core\locales\eu.global.min.js" />
+    <Content Include="Content\fullcalendar\packages\core\locales\fa.global.js" />
+    <Content Include="Content\fullcalendar\packages\core\locales\fa.global.min.js" />
+    <Content Include="Content\fullcalendar\packages\core\locales\fi.global.js" />
+    <Content Include="Content\fullcalendar\packages\core\locales\fi.global.min.js" />
+    <Content Include="Content\fullcalendar\packages\core\locales\fr-ca.global.js" />
+    <Content Include="Content\fullcalendar\packages\core\locales\fr-ca.global.min.js" />
+    <Content Include="Content\fullcalendar\packages\core\locales\fr-ch.global.js" />
+    <Content Include="Content\fullcalendar\packages\core\locales\fr-ch.global.min.js" />
+    <Content Include="Content\fullcalendar\packages\core\locales\fr.global.js" />
+    <Content Include="Content\fullcalendar\packages\core\locales\fr.global.min.js" />
+    <Content Include="Content\fullcalendar\packages\core\locales\gl.global.js" />
+    <Content Include="Content\fullcalendar\packages\core\locales\gl.global.min.js" />
+    <Content Include="Content\fullcalendar\packages\core\locales\he.global.js" />
+    <Content Include="Content\fullcalendar\packages\core\locales\he.global.min.js" />
+    <Content Include="Content\fullcalendar\packages\core\locales\hi.global.js" />
+    <Content Include="Content\fullcalendar\packages\core\locales\hi.global.min.js" />
+    <Content Include="Content\fullcalendar\packages\core\locales\hr.global.js" />
+    <Content Include="Content\fullcalendar\packages\core\locales\hr.global.min.js" />
+    <Content Include="Content\fullcalendar\packages\core\locales\hu.global.js" />
+    <Content Include="Content\fullcalendar\packages\core\locales\hu.global.min.js" />
+    <Content Include="Content\fullcalendar\packages\core\locales\hy-am.global.js" />
+    <Content Include="Content\fullcalendar\packages\core\locales\hy-am.global.min.js" />
+    <Content Include="Content\fullcalendar\packages\core\locales\id.global.js" />
+    <Content Include="Content\fullcalendar\packages\core\locales\id.global.min.js" />
+    <Content Include="Content\fullcalendar\packages\core\locales\is.global.js" />
+    <Content Include="Content\fullcalendar\packages\core\locales\is.global.min.js" />
+    <Content Include="Content\fullcalendar\packages\core\locales\it.global.js" />
+    <Content Include="Content\fullcalendar\packages\core\locales\it.global.min.js" />
+    <Content Include="Content\fullcalendar\packages\core\locales\ja.global.js" />
+    <Content Include="Content\fullcalendar\packages\core\locales\ja.global.min.js" />
+    <Content Include="Content\fullcalendar\packages\core\locales\ka.global.js" />
+    <Content Include="Content\fullcalendar\packages\core\locales\ka.global.min.js" />
+    <Content Include="Content\fullcalendar\packages\core\locales\kk.global.js" />
+    <Content Include="Content\fullcalendar\packages\core\locales\kk.global.min.js" />
+    <Content Include="Content\fullcalendar\packages\core\locales\km.global.js" />
+    <Content Include="Content\fullcalendar\packages\core\locales\km.global.min.js" />
+    <Content Include="Content\fullcalendar\packages\core\locales\ko.global.js" />
+    <Content Include="Content\fullcalendar\packages\core\locales\ko.global.min.js" />
+    <Content Include="Content\fullcalendar\packages\core\locales\ku.global.js" />
+    <Content Include="Content\fullcalendar\packages\core\locales\ku.global.min.js" />
+    <Content Include="Content\fullcalendar\packages\core\locales\lb.global.js" />
+    <Content Include="Content\fullcalendar\packages\core\locales\lb.global.min.js" />
+    <Content Include="Content\fullcalendar\packages\core\locales\lt.global.js" />
+    <Content Include="Content\fullcalendar\packages\core\locales\lt.global.min.js" />
+    <Content Include="Content\fullcalendar\packages\core\locales\lv.global.js" />
+    <Content Include="Content\fullcalendar\packages\core\locales\lv.global.min.js" />
+    <Content Include="Content\fullcalendar\packages\core\locales\mk.global.js" />
+    <Content Include="Content\fullcalendar\packages\core\locales\mk.global.min.js" />
+    <Content Include="Content\fullcalendar\packages\core\locales\ms.global.js" />
+    <Content Include="Content\fullcalendar\packages\core\locales\ms.global.min.js" />
+    <Content Include="Content\fullcalendar\packages\core\locales\nb.global.js" />
+    <Content Include="Content\fullcalendar\packages\core\locales\nb.global.min.js" />
+    <Content Include="Content\fullcalendar\packages\core\locales\ne.global.js" />
+    <Content Include="Content\fullcalendar\packages\core\locales\ne.global.min.js" />
+    <Content Include="Content\fullcalendar\packages\core\locales\nl.global.js" />
+    <Content Include="Content\fullcalendar\packages\core\locales\nl.global.min.js" />
+    <Content Include="Content\fullcalendar\packages\core\locales\nn.global.js" />
+    <Content Include="Content\fullcalendar\packages\core\locales\nn.global.min.js" />
+    <Content Include="Content\fullcalendar\packages\core\locales\pl.global.js" />
+    <Content Include="Content\fullcalendar\packages\core\locales\pl.global.min.js" />
+    <Content Include="Content\fullcalendar\packages\core\locales\pt-br.global.js" />
+    <Content Include="Content\fullcalendar\packages\core\locales\pt-br.global.min.js" />
+    <Content Include="Content\fullcalendar\packages\core\locales\pt.global.js" />
+    <Content Include="Content\fullcalendar\packages\core\locales\pt.global.min.js" />
+    <Content Include="Content\fullcalendar\packages\core\locales\ro.global.js" />
+    <Content Include="Content\fullcalendar\packages\core\locales\ro.global.min.js" />
+    <Content Include="Content\fullcalendar\packages\core\locales\ru.global.js" />
+    <Content Include="Content\fullcalendar\packages\core\locales\ru.global.min.js" />
+    <Content Include="Content\fullcalendar\packages\core\locales\si-lk.global.js" />
+    <Content Include="Content\fullcalendar\packages\core\locales\si-lk.global.min.js" />
+    <Content Include="Content\fullcalendar\packages\core\locales\sk.global.js" />
+    <Content Include="Content\fullcalendar\packages\core\locales\sk.global.min.js" />
+    <Content Include="Content\fullcalendar\packages\core\locales\sl.global.js" />
+    <Content Include="Content\fullcalendar\packages\core\locales\sl.global.min.js" />
+    <Content Include="Content\fullcalendar\packages\core\locales\sm.global.js" />
+    <Content Include="Content\fullcalendar\packages\core\locales\sm.global.min.js" />
+    <Content Include="Content\fullcalendar\packages\core\locales\sq.global.js" />
+    <Content Include="Content\fullcalendar\packages\core\locales\sq.global.min.js" />
+    <Content Include="Content\fullcalendar\packages\core\locales\sr-cyrl.global.js" />
+    <Content Include="Content\fullcalendar\packages\core\locales\sr-cyrl.global.min.js" />
+    <Content Include="Content\fullcalendar\packages\core\locales\sr.global.js" />
+    <Content Include="Content\fullcalendar\packages\core\locales\sr.global.min.js" />
+    <Content Include="Content\fullcalendar\packages\core\locales\sv.global.js" />
+    <Content Include="Content\fullcalendar\packages\core\locales\sv.global.min.js" />
+    <Content Include="Content\fullcalendar\packages\core\locales\ta-in.global.js" />
+    <Content Include="Content\fullcalendar\packages\core\locales\ta-in.global.min.js" />
+    <Content Include="Content\fullcalendar\packages\core\locales\th.global.js" />
+    <Content Include="Content\fullcalendar\packages\core\locales\th.global.min.js" />
+    <Content Include="Content\fullcalendar\packages\core\locales\tr.global.js" />
+    <Content Include="Content\fullcalendar\packages\core\locales\tr.global.min.js" />
+    <Content Include="Content\fullcalendar\packages\core\locales\ug.global.js" />
+    <Content Include="Content\fullcalendar\packages\core\locales\ug.global.min.js" />
+    <Content Include="Content\fullcalendar\packages\core\locales\uk.global.js" />
+    <Content Include="Content\fullcalendar\packages\core\locales\uk.global.min.js" />
+    <Content Include="Content\fullcalendar\packages\core\locales\uz-cy.global.js" />
+    <Content Include="Content\fullcalendar\packages\core\locales\uz-cy.global.min.js" />
+    <Content Include="Content\fullcalendar\packages\core\locales\uz.global.js" />
+    <Content Include="Content\fullcalendar\packages\core\locales\uz.global.min.js" />
+    <Content Include="Content\fullcalendar\packages\core\locales\vi.global.js" />
+    <Content Include="Content\fullcalendar\packages\core\locales\vi.global.min.js" />
+    <Content Include="Content\fullcalendar\packages\core\locales\zh-cn.global.js" />
+    <Content Include="Content\fullcalendar\packages\core\locales\zh-cn.global.min.js" />
+    <Content Include="Content\fullcalendar\packages\core\locales\zh-tw.global.js" />
+    <Content Include="Content\fullcalendar\packages\core\locales\zh-tw.global.min.js" />
+    <Content Include="Content\fullcalendar\packages\daygrid\index.global.js" />
+    <Content Include="Content\fullcalendar\packages\daygrid\index.global.min.js" />
+    <Content Include="Content\fullcalendar\packages\google-calendar\index.global.js" />
+    <Content Include="Content\fullcalendar\packages\google-calendar\index.global.min.js" />
+    <Content Include="Content\fullcalendar\packages\icalendar\index.global.js" />
+    <Content Include="Content\fullcalendar\packages\icalendar\index.global.min.js" />
+    <Content Include="Content\fullcalendar\packages\interaction\index.global.js" />
+    <Content Include="Content\fullcalendar\packages\interaction\index.global.min.js" />
+    <Content Include="Content\fullcalendar\packages\list\index.global.js" />
+    <Content Include="Content\fullcalendar\packages\list\index.global.min.js" />
+    <Content Include="Content\fullcalendar\packages\luxon1\index.global.js" />
+    <Content Include="Content\fullcalendar\packages\luxon1\index.global.min.js" />
+    <Content Include="Content\fullcalendar\packages\luxon2\index.global.js" />
+    <Content Include="Content\fullcalendar\packages\luxon2\index.global.min.js" />
+    <Content Include="Content\fullcalendar\packages\luxon3\index.global.js" />
+    <Content Include="Content\fullcalendar\packages\luxon3\index.global.min.js" />
+    <Content Include="Content\fullcalendar\packages\moment-timezone\index.global.js" />
+    <Content Include="Content\fullcalendar\packages\moment-timezone\index.global.min.js" />
+    <Content Include="Content\fullcalendar\packages\moment\index.global.js" />
+    <Content Include="Content\fullcalendar\packages\moment\index.global.min.js" />
+    <Content Include="Content\fullcalendar\packages\multimonth\index.global.js" />
+    <Content Include="Content\fullcalendar\packages\multimonth\index.global.min.js" />
+    <Content Include="Content\fullcalendar\packages\rrule\index.global.js" />
+    <Content Include="Content\fullcalendar\packages\rrule\index.global.min.js" />
+    <Content Include="Content\fullcalendar\packages\timegrid\index.global.js" />
+    <Content Include="Content\fullcalendar\packages\timegrid\index.global.min.js" />
+    <Content Include="Content\fullcalendar\packages\web-component\index.global.js" />
+    <Content Include="Content\fullcalendar\packages\web-component\index.global.min.js" />
+    <Content Include="Content\Site.css" />
+    <Content Include="Content\SiteLayout\assets\css\main.css" />
+    <Content Include="Content\SiteLayout\assets\js\main.js" />
+    <Content Include="Content\SiteLayout\assets\vendor\aos\aos.cjs.js" />
+    <Content Include="Content\SiteLayout\assets\vendor\aos\aos.css" />
+    <Content Include="Content\SiteLayout\assets\vendor\aos\aos.esm.js" />
+    <Content Include="Content\SiteLayout\assets\vendor\aos\aos.js" />
+    <Content Include="Content\SiteLayout\assets\vendor\bootstrap-icons\bootstrap-icons.css" />
+    <Content Include="Content\SiteLayout\assets\vendor\bootstrap-icons\bootstrap-icons.min.css" />
+    <Content Include="Content\SiteLayout\assets\vendor\bootstrap\css\bootstrap-grid.css" />
+    <Content Include="Content\SiteLayout\assets\vendor\bootstrap\css\bootstrap-grid.min.css" />
+    <Content Include="Content\SiteLayout\assets\vendor\bootstrap\css\bootstrap-grid.rtl.css" />
+    <Content Include="Content\SiteLayout\assets\vendor\bootstrap\css\bootstrap-grid.rtl.min.css" />
+    <Content Include="Content\SiteLayout\assets\vendor\bootstrap\css\bootstrap-reboot.css" />
+    <Content Include="Content\SiteLayout\assets\vendor\bootstrap\css\bootstrap-reboot.min.css" />
+    <Content Include="Content\SiteLayout\assets\vendor\bootstrap\css\bootstrap-reboot.rtl.css" />
+    <Content Include="Content\SiteLayout\assets\vendor\bootstrap\css\bootstrap-reboot.rtl.min.css" />
+    <Content Include="Content\SiteLayout\assets\vendor\bootstrap\css\bootstrap-utilities.css" />
+    <Content Include="Content\SiteLayout\assets\vendor\bootstrap\css\bootstrap-utilities.min.css" />
+    <Content Include="Content\SiteLayout\assets\vendor\bootstrap\css\bootstrap-utilities.rtl.css" />
+    <Content Include="Content\SiteLayout\assets\vendor\bootstrap\css\bootstrap-utilities.rtl.min.css" />
+    <Content Include="Content\SiteLayout\assets\vendor\bootstrap\css\bootstrap.css" />
+    <Content Include="Content\SiteLayout\assets\vendor\bootstrap\css\bootstrap.min.css" />
+    <Content Include="Content\SiteLayout\assets\vendor\bootstrap\css\bootstrap.rtl.css" />
+    <Content Include="Content\SiteLayout\assets\vendor\bootstrap\css\bootstrap.rtl.min.css" />
+    <Content Include="Content\SiteLayout\assets\vendor\bootstrap\css\prb.txt" />
+    <Content Include="Content\SiteLayout\assets\vendor\bootstrap\js\bootstrap.bundle.js" />
+    <Content Include="Content\SiteLayout\assets\vendor\bootstrap\js\bootstrap.bundle.min.js" />
+    <Content Include="Content\SiteLayout\assets\vendor\bootstrap\js\bootstrap.esm.js" />
+    <Content Include="Content\SiteLayout\assets\vendor\bootstrap\js\bootstrap.esm.min.js" />
+    <Content Include="Content\SiteLayout\assets\vendor\bootstrap\js\bootstrap.js" />
+    <Content Include="Content\SiteLayout\assets\vendor\bootstrap\js\bootstrap.min.js" />
+    <Content Include="Content\SiteLayout\assets\vendor\fontawesome-free\css\all.css" />
+    <Content Include="Content\SiteLayout\assets\vendor\fontawesome-free\css\all.min.css" />
+    <Content Include="Content\SiteLayout\assets\vendor\fontawesome-free\css\brands.css" />
+    <Content Include="Content\SiteLayout\assets\vendor\fontawesome-free\css\brands.min.css" />
+    <Content Include="Content\SiteLayout\assets\vendor\fontawesome-free\css\fontawesome.css" />
+    <Content Include="Content\SiteLayout\assets\vendor\fontawesome-free\css\fontawesome.min.css" />
+    <Content Include="Content\SiteLayout\assets\vendor\fontawesome-free\css\regular.css" />
+    <Content Include="Content\SiteLayout\assets\vendor\fontawesome-free\css\regular.min.css" />
+    <Content Include="Content\SiteLayout\assets\vendor\fontawesome-free\css\solid.css" />
+    <Content Include="Content\SiteLayout\assets\vendor\fontawesome-free\css\solid.min.css" />
+    <Content Include="Content\SiteLayout\assets\vendor\fontawesome-free\css\svg-with-js.css" />
+    <Content Include="Content\SiteLayout\assets\vendor\fontawesome-free\css\svg-with-js.min.css" />
+    <Content Include="Content\SiteLayout\assets\vendor\fontawesome-free\css\v4-font-face.css" />
+    <Content Include="Content\SiteLayout\assets\vendor\fontawesome-free\css\v4-font-face.min.css" />
+    <Content Include="Content\SiteLayout\assets\vendor\fontawesome-free\css\v4-shims.css" />
+    <Content Include="Content\SiteLayout\assets\vendor\fontawesome-free\css\v4-shims.min.css" />
+    <Content Include="Content\SiteLayout\assets\vendor\fontawesome-free\css\v5-font-face.css" />
+    <Content Include="Content\SiteLayout\assets\vendor\fontawesome-free\css\v5-font-face.min.css" />
+    <Content Include="Content\SiteLayout\assets\vendor\glightbox\css\glightbox.css" />
+    <Content Include="Content\SiteLayout\assets\vendor\glightbox\css\glightbox.min.css" />
+    <Content Include="Content\SiteLayout\assets\vendor\glightbox\js\glightbox.js" />
+    <Content Include="Content\SiteLayout\assets\vendor\glightbox\js\glightbox.min.js" />
+    <Content Include="Content\SiteLayout\assets\vendor\php-email-form\validate.js" />
+    <Content Include="Content\SiteLayout\assets\vendor\purecounter\purecounter_vanilla.js" />
+    <Content Include="Content\SiteLayout\assets\vendor\swiper\swiper-bundle.min.css" />
+    <Content Include="Content\SiteLayout\assets\vendor\swiper\swiper-bundle.min.js" />
+    <Content Include="Content\SiteLayout\forms\Readme.txt" />
+    <Content Include="Global.asax" />
+    <Content Include="Scripts\bootstrap.bundle.js" />
+    <Content Include="Scripts\bootstrap.bundle.min.js" />
+    <Content Include="Scripts\bootstrap.esm.js" />
+    <Content Include="Scripts\bootstrap.esm.min.js" />
+    <Content Include="Scripts\bootstrap.js" />
+    <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Content\AdminLayout\assets\vendor\apexcharts\locales\ar.json" />
+    <Content Include="Content\AdminLayout\assets\vendor\apexcharts\locales\be-cyrl.json" />
+    <Content Include="Content\AdminLayout\assets\vendor\apexcharts\locales\be-latn.json" />
+    <Content Include="Content\AdminLayout\assets\vendor\apexcharts\locales\ca.json" />
+    <Content Include="Content\AdminLayout\assets\vendor\apexcharts\locales\cs.json" />
+    <Content Include="Content\AdminLayout\assets\vendor\apexcharts\locales\da.json" />
+    <Content Include="Content\AdminLayout\assets\vendor\apexcharts\locales\de.json" />
+    <Content Include="Content\AdminLayout\assets\vendor\apexcharts\locales\el.json" />
+    <Content Include="Content\AdminLayout\assets\vendor\apexcharts\locales\en.json" />
+    <Content Include="Content\AdminLayout\assets\vendor\apexcharts\locales\es.json" />
+    <Content Include="Content\AdminLayout\assets\vendor\apexcharts\locales\et.json" />
+    <Content Include="Content\AdminLayout\assets\vendor\apexcharts\locales\fa.json" />
+    <Content Include="Content\AdminLayout\assets\vendor\apexcharts\locales\fi.json" />
+    <Content Include="Content\AdminLayout\assets\vendor\apexcharts\locales\fr.json" />
+    <Content Include="Content\AdminLayout\assets\vendor\apexcharts\locales\he.json" />
+    <Content Include="Content\AdminLayout\assets\vendor\apexcharts\locales\hi.json" />
+    <Content Include="Content\AdminLayout\assets\vendor\apexcharts\locales\hr.json" />
+    <Content Include="Content\AdminLayout\assets\vendor\apexcharts\locales\hu.json" />
+    <Content Include="Content\AdminLayout\assets\vendor\apexcharts\locales\hy.json" />
+    <Content Include="Content\AdminLayout\assets\vendor\apexcharts\locales\id.json" />
+    <Content Include="Content\AdminLayout\assets\vendor\apexcharts\locales\it.json" />
+    <Content Include="Content\AdminLayout\assets\vendor\apexcharts\locales\ja.json" />
+    <Content Include="Content\AdminLayout\assets\vendor\apexcharts\locales\ka.json" />
+    <Content Include="Content\AdminLayout\assets\vendor\apexcharts\locales\ko.json" />
+    <Content Include="Content\AdminLayout\assets\vendor\apexcharts\locales\lt.json" />
+    <Content Include="Content\AdminLayout\assets\vendor\apexcharts\locales\lv.json" />
+    <Content Include="Content\AdminLayout\assets\vendor\apexcharts\locales\ms.json" />
+    <Content Include="Content\AdminLayout\assets\vendor\apexcharts\locales\nb.json" />
+    <Content Include="Content\AdminLayout\assets\vendor\apexcharts\locales\nl.json" />
+    <Content Include="Content\AdminLayout\assets\vendor\apexcharts\locales\pl.json" />
+    <Content Include="Content\AdminLayout\assets\vendor\apexcharts\locales\pt-br.json" />
+    <Content Include="Content\AdminLayout\assets\vendor\apexcharts\locales\pt.json" />
+    <Content Include="Content\AdminLayout\assets\vendor\apexcharts\locales\rs.json" />
+    <Content Include="Content\AdminLayout\assets\vendor\apexcharts\locales\ru.json" />
+    <Content Include="Content\AdminLayout\assets\vendor\apexcharts\locales\se.json" />
+    <Content Include="Content\AdminLayout\assets\vendor\apexcharts\locales\sk.json" />
+    <Content Include="Content\AdminLayout\assets\vendor\apexcharts\locales\sl.json" />
+    <Content Include="Content\AdminLayout\assets\vendor\apexcharts\locales\sq.json" />
+    <Content Include="Content\AdminLayout\assets\vendor\apexcharts\locales\th.json" />
+    <Content Include="Content\AdminLayout\assets\vendor\apexcharts\locales\tr.json" />
+    <Content Include="Content\AdminLayout\assets\vendor\apexcharts\locales\ua.json" />
+    <Content Include="Content\AdminLayout\assets\vendor\apexcharts\locales\vi.json" />
+    <Content Include="Content\AdminLayout\assets\vendor\apexcharts\locales\zh-cn.json" />
+    <Content Include="Content\AdminLayout\assets\vendor\apexcharts\locales\zh-tw.json" />
+    <Content Include="Content\AdminLayout\assets\vendor\bootstrap-icons\bootstrap-icons.json" />
+    <Content Include="Content\AdminLayout\assets\vendor\bootstrap-icons\bootstrap-icons.scss" />
+    <Content Include="Content\AdminLayout\assets\vendor\bootstrap-icons\fonts\bootstrap-icons.woff" />
+    <Content Include="Content\AdminLayout\assets\vendor\bootstrap-icons\fonts\bootstrap-icons.woff2" />
+    <Content Include="Content\AdminLayout\assets\vendor\bootstrap\css\bootstrap-grid.css.map" />
+    <Content Include="Content\AdminLayout\assets\vendor\bootstrap\css\bootstrap-grid.min.css.map" />
+    <Content Include="Content\AdminLayout\assets\vendor\bootstrap\css\bootstrap-grid.rtl.css.map" />
+    <Content Include="Content\AdminLayout\assets\vendor\bootstrap\css\bootstrap-grid.rtl.min.css.map" />
+    <Content Include="Content\AdminLayout\assets\vendor\bootstrap\css\bootstrap-reboot.css.map" />
+    <Content Include="Content\AdminLayout\assets\vendor\bootstrap\css\bootstrap-reboot.min.css.map" />
+    <Content Include="Content\AdminLayout\assets\vendor\bootstrap\css\bootstrap-reboot.rtl.css.map" />
+    <Content Include="Content\AdminLayout\assets\vendor\bootstrap\css\bootstrap-reboot.rtl.min.css.map" />
+    <Content Include="Content\AdminLayout\assets\vendor\bootstrap\css\bootstrap-utilities.css.map" />
+    <Content Include="Content\AdminLayout\assets\vendor\bootstrap\css\bootstrap-utilities.min.css.map" />
+    <Content Include="Content\AdminLayout\assets\vendor\bootstrap\css\bootstrap-utilities.rtl.css.map" />
+    <Content Include="Content\AdminLayout\assets\vendor\bootstrap\css\bootstrap-utilities.rtl.min.css.map" />
+    <Content Include="Content\AdminLayout\assets\vendor\bootstrap\css\bootstrap.css.map" />
+    <Content Include="Content\AdminLayout\assets\vendor\bootstrap\css\bootstrap.min.css.map" />
+    <Content Include="Content\AdminLayout\assets\vendor\bootstrap\css\bootstrap.rtl.css.map" />
+    <Content Include="Content\AdminLayout\assets\vendor\bootstrap\css\bootstrap.rtl.min.css.map" />
+    <Content Include="Content\AdminLayout\assets\vendor\bootstrap\js\bootstrap.bundle.js.map" />
+    <Content Include="Content\AdminLayout\assets\vendor\bootstrap\js\bootstrap.bundle.min.js.map" />
+    <Content Include="Content\AdminLayout\assets\vendor\bootstrap\js\bootstrap.esm.js.map" />
+    <Content Include="Content\AdminLayout\assets\vendor\bootstrap\js\bootstrap.esm.min.js.map" />
+    <Content Include="Content\AdminLayout\assets\vendor\bootstrap\js\bootstrap.js.map" />
+    <Content Include="Content\AdminLayout\assets\vendor\bootstrap\js\bootstrap.min.js.map" />
+    <Content Include="Content\AdminLayout\assets\vendor\boxicons\fonts\boxicons.eot" />
+    <Content Include="Content\AdminLayout\assets\vendor\boxicons\fonts\boxicons.ttf" />
+    <Content Include="Content\AdminLayout\assets\vendor\boxicons\fonts\boxicons.woff" />
+    <Content Include="Content\AdminLayout\assets\vendor\boxicons\fonts\boxicons.woff2" />
+    <Content Include="Content\AdminLayout\assets\vendor\quill\quill.bubble.css.map" />
+    <Content Include="Content\AdminLayout\assets\vendor\quill\quill.core.css.map" />
+    <Content Include="Content\AdminLayout\assets\vendor\quill\quill.core.js.map" />
+    <Content Include="Content\AdminLayout\assets\vendor\quill\quill.js.map" />
+    <Content Include="Content\AdminLayout\assets\vendor\quill\quill.snow.css.map" />
+    <Content Include="Content\AdminLayout\assets\vendor\remixicon\remixicon.eot" />
+    <Content Include="Content\AdminLayout\assets\vendor\remixicon\remixicon.glyph.json" />
+    <Content Include="Content\AdminLayout\assets\vendor\remixicon\remixicon.less" />
+    <Content Include="Content\AdminLayout\assets\vendor\remixicon\remixicon.ttf" />
+    <Content Include="Content\AdminLayout\assets\vendor\remixicon\remixicon.woff" />
+    <Content Include="Content\AdminLayout\assets\vendor\remixicon\remixicon.woff2" />
+    <Content Include="Content\AdminLayout\assets\vendor\tinymce\bower.json" />
+    <Content Include="Content\AdminLayout\assets\vendor\tinymce\CHANGELOG.md" />
+    <Content Include="Content\AdminLayout\assets\vendor\tinymce\composer.json" />
+    <Content Include="Content\AdminLayout\assets\vendor\tinymce\license.md" />
+    <Content Include="Content\AdminLayout\assets\vendor\tinymce\package.json" />
+    <Content Include="Content\AdminLayout\assets\vendor\tinymce\README.md" />
+    <Content Include="Content\AdminLayout\forms\contact.php" />
+    <Content Include="Content\SiteLayout\assets\vendor\aos\aos.js.map" />
+    <Content Include="Content\SiteLayout\assets\vendor\bootstrap-icons\bootstrap-icons.json" />
+    <Content Include="Content\SiteLayout\assets\vendor\bootstrap-icons\bootstrap-icons.scss" />
+    <Content Include="Content\SiteLayout\assets\vendor\bootstrap-icons\fonts\bootstrap-icons.woff" />
+    <Content Include="Content\SiteLayout\assets\vendor\bootstrap-icons\fonts\bootstrap-icons.woff2" />
+    <Content Include="Content\SiteLayout\assets\vendor\bootstrap\css\bootstrap-grid.css.map" />
+    <Content Include="Content\SiteLayout\assets\vendor\bootstrap\css\bootstrap-grid.min.css.map" />
+    <Content Include="Content\SiteLayout\assets\vendor\bootstrap\css\bootstrap-grid.rtl.css.map" />
+    <Content Include="Content\SiteLayout\assets\vendor\bootstrap\css\bootstrap-grid.rtl.min.css.map" />
+    <Content Include="Content\SiteLayout\assets\vendor\bootstrap\css\bootstrap-reboot.css.map" />
+    <Content Include="Content\SiteLayout\assets\vendor\bootstrap\css\bootstrap-reboot.min.css.map" />
+    <Content Include="Content\SiteLayout\assets\vendor\bootstrap\css\bootstrap-reboot.rtl.css.map" />
+    <Content Include="Content\SiteLayout\assets\vendor\bootstrap\css\bootstrap-reboot.rtl.min.css.map" />
+    <Content Include="Content\SiteLayout\assets\vendor\bootstrap\css\bootstrap-utilities.css.map" />
+    <Content Include="Content\SiteLayout\assets\vendor\bootstrap\css\bootstrap-utilities.min.css.map" />
+    <Content Include="Content\SiteLayout\assets\vendor\bootstrap\css\bootstrap-utilities.rtl.css.map" />
+    <Content Include="Content\SiteLayout\assets\vendor\bootstrap\css\bootstrap-utilities.rtl.min.css.map" />
+    <Content Include="Content\SiteLayout\assets\vendor\bootstrap\css\bootstrap.css.map" />
+    <Content Include="Content\SiteLayout\assets\vendor\bootstrap\css\bootstrap.min.css.map" />
+    <Content Include="Content\SiteLayout\assets\vendor\bootstrap\css\bootstrap.rtl.css.map" />
+    <Content Include="Content\SiteLayout\assets\vendor\bootstrap\css\bootstrap.rtl.min.css.map" />
+    <Content Include="Content\SiteLayout\assets\vendor\bootstrap\js\bootstrap.bundle.js.map" />
+    <Content Include="Content\SiteLayout\assets\vendor\bootstrap\js\bootstrap.bundle.min.js.map" />
+    <Content Include="Content\SiteLayout\assets\vendor\bootstrap\js\bootstrap.esm.js.map" />
+    <Content Include="Content\SiteLayout\assets\vendor\bootstrap\js\bootstrap.esm.min.js.map" />
+    <Content Include="Content\SiteLayout\assets\vendor\bootstrap\js\bootstrap.js.map" />
+    <Content Include="Content\SiteLayout\assets\vendor\bootstrap\js\bootstrap.min.js.map" />
+    <Content Include="Content\SiteLayout\assets\vendor\fontawesome-free\webfonts\fa-brands-400.ttf" />
+    <Content Include="Content\SiteLayout\assets\vendor\fontawesome-free\webfonts\fa-brands-400.woff2" />
+    <Content Include="Content\SiteLayout\assets\vendor\fontawesome-free\webfonts\fa-regular-400.ttf" />
+    <Content Include="Content\SiteLayout\assets\vendor\fontawesome-free\webfonts\fa-regular-400.woff2" />
+    <Content Include="Content\SiteLayout\assets\vendor\fontawesome-free\webfonts\fa-solid-900.ttf" />
+    <Content Include="Content\SiteLayout\assets\vendor\fontawesome-free\webfonts\fa-solid-900.woff2" />
+    <Content Include="Content\SiteLayout\assets\vendor\fontawesome-free\webfonts\fa-v4compatibility.ttf" />
+    <Content Include="Content\SiteLayout\assets\vendor\fontawesome-free\webfonts\fa-v4compatibility.woff2" />
+    <Content Include="Content\SiteLayout\assets\vendor\purecounter\purecounter_vanilla.js.map" />
+    <Content Include="Content\SiteLayout\assets\vendor\swiper\swiper-bundle.min.js.map" />
+    <Content Include="Content\SiteLayout\forms\appointment.php" />
+    <Content Include="Content\SiteLayout\forms\contact.php" />
+    <Content Include="Content\fullcalendar\LICENSE.md" />
+    <Content Include="Content\fullcalendar\README.md" />
+    <None Include="Scripts\jquery-3.7.1.intellisense.js" />
+    <Content Include="Scripts\jquery-3.7.1.js" />
+    <Content Include="Scripts\jquery-3.7.1.min.js" />
+    <Content Include="Scripts\jquery-3.7.1.slim.js" />
+    <Content Include="Scripts\jquery-3.7.1.slim.min.js" />
+    <Content Include="Web.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\AcilDurumController.cs" />
+    <Compile Include="Controllers\AdminController.cs" />
+    <Compile Include="Controllers\AsistanController.cs" />
+    <Compile Include="Controllers\BaseController.cs" />
+    <Compile Include="Controllers\BolumController.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\MusaitlikController.cs" />
+    <Compile Include="Controllers\NobetsController.cs" />
+    <Compile Include="Controllers\OgretimUyesiController.cs" />
+    <Compile Include="Controllers\RandevuController.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Helpers\CryptoHelper.cs" />
+    <Compile Include="Helpers\ImageUploader.cs" />
+    <Compile Include="Migrations\202412191038093_FixForeignKeys.cs" />
+    <Compile Include="Migrations\202412191038093_FixForeignKeys.Designer.cs">
+      <DependentUpon>202412191038093_FixForeignKeys.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202601182110010_SifreUzunlukArtir.cs" />
+    <Compile Include="Migrations\202601182110010_SifreUzunlukArtir.Designer.cs">
+      <DependentUpon>202601182110010_SifreUzunlukArtir.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202601182151315_SliderKaldir.cs" />
+    <Compile Include="Migrations\202601182151315_SliderKaldir.Designer.cs">
+      <DependentUpon>202601182151315_SliderKaldir.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\DataContext\PediatriDBContext.cs" />
+    <Compile Include="Models\Model\AcilDurum.cs" />
+    <Compile Include="Models\Model\Admin.cs" />
+    <Compile Include="Models\Model\Asistan.cs" />
+    <Compile Include="Models\Model\Musaitlik.cs" />
+    <Compile Include="Models\Model\Bolum.cs" />
+    <Compile Include="Models\Model\Nobet.cs" />
+    <Compile Include="Models\Model\OgretimUyesi.cs" />
+    <Compile Include="Models\Model\Randevu.cs" />
+    <Compile Include="Models\Model\RandevuDurum.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\web.config" />
+    <Content Include="Content\bootstrap.rtl.min.css.map" />
+    <Content Include="Content\bootstrap.rtl.css.map" />
+    <Content Include="Content\bootstrap.min.css.map" />
+    <Content Include="Content\bootstrap.css.map" />
+    <Content Include="Content\bootstrap-utilities.rtl.min.css.map" />
+    <Content Include="Content\bootstrap-utilities.rtl.css.map" />
+    <Content Include="Content\bootstrap-utilities.min.css.map" />
+    <Content Include="Content\bootstrap-utilities.css.map" />
+    <Content Include="Content\bootstrap-reboot.rtl.min.css.map" />
+    <Content Include="Content\bootstrap-reboot.rtl.css.map" />
+    <Content Include="Content\bootstrap-reboot.min.css.map" />
+    <Content Include="Content\bootstrap-reboot.css.map" />
+    <Content Include="Content\bootstrap-grid.rtl.min.css.map" />
+    <Content Include="Content\bootstrap-grid.rtl.css.map" />
+    <Content Include="Content\bootstrap-grid.min.css.map" />
+    <Content Include="Content\bootstrap-grid.css.map" />
+    <None Include="packages.config" />
+    <Content Include="Views\Shared\_SiteLayout.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Scripts\bootstrap.min.js.map" />
+    <Content Include="Scripts\bootstrap.js.map" />
+    <Content Include="Scripts\bootstrap.esm.min.js.map" />
+    <Content Include="Scripts\bootstrap.esm.js.map" />
+    <Content Include="Scripts\bootstrap.bundle.min.js.map" />
+    <Content Include="Scripts\bootstrap.bundle.js.map" />
+    <Content Include="Scripts\jquery-3.7.1.slim.min.map" />
+    <Content Include="Scripts\jquery-3.7.1.min.map" />
+    <Content Include="Views\Shared\_AdminLayout.cshtml" />
+    <Content Include="Views\Admin\Index.cshtml" />
+    <Content Include="Views\Asistan\Index.cshtml" />
+    <Content Include="Views\OgretimUyesi\Index.cshtml" />
+    <Content Include="Views\Bolum\Index.cshtml" />
+    <Content Include="Views\AcilDurum\Create.cshtml" />
+    <Content Include="Views\AcilDurum\Delete.cshtml" />
+    <Content Include="Views\AcilDurum\Details.cshtml" />
+    <Content Include="Views\AcilDurum\Edit.cshtml" />
+    <Content Include="Views\AcilDurum\Index.cshtml" />
+    <Content Include="Views\Admin\Login.cshtml" />
+    <Content Include="Views\Home\Asistan.cshtml" />
+    <Content Include="Views\Home\OgretimUyesi.cshtml" />
+    <Content Include="Views\Home\Bolum.cshtml" />
+    <Content Include="Views\Home\AcilDurum.cshtml" />
+    <Content Include="Views\Nobets\Index.cshtml" />
+    <Content Include="Views\Home\Nobet.cshtml" />
+    <Content Include="Views\Home\Randevu.cshtml" />
+    <Content Include="Views\Musaitlik\Index.cshtml" />
+    <Content Include="Views\Randevu\Index.cshtml" />
+    <None Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+    <None Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+    <Folder Include="Uploads\Slider\" />
+  </ItemGroup>
+  <ItemGroup>
+    <TypeScriptCompile Include="Content\AdminLayout\assets\vendor\tinymce\tinymce.d.ts" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\202412191038093_FixForeignKeys.resx">
+      <DependentUpon>202412191038093_FixForeignKeys.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202601182110010_SifreUzunlukArtir.resx">
+      <DependentUpon>202601182110010_SifreUzunlukArtir.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202601182151315_SliderKaldir.resx">
+      <DependentUpon>202601182151315_SliderKaldir.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>51526</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:51526/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>Bu proje bu bilgisayarda olmayan NuGet paketlerine başvuru yapıyor. Bunları indirmek için NuGet Paket Geri Yükleme'yi kullanın. Daha fazla bilgi için, bkz. http://go.microsoft.com/fwlink/?LinkID=322105. Eksik dosya: {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
+    <Error Condition="!Exists('..\packages\Microsoft.TypeScript.MSBuild.5.7.1\build\Microsoft.TypeScript.MSBuild.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.TypeScript.MSBuild.5.7.1\build\Microsoft.TypeScript.MSBuild.props'))" />
+    <Error Condition="!Exists('..\packages\Microsoft.TypeScript.MSBuild.5.7.1\build\Microsoft.TypeScript.MSBuild.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.TypeScript.MSBuild.5.7.1\build\Microsoft.TypeScript.MSBuild.targets'))" />
+    <Error Condition="!Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.4.4\build\EntityFramework.props'))" />
+    <Error Condition="!Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.4.4\build\EntityFramework.targets'))" />
+  </Target>
+  <Import Project="..\packages\Microsoft.TypeScript.MSBuild.5.7.1\build\Microsoft.TypeScript.MSBuild.targets" Condition="Exists('..\packages\Microsoft.TypeScript.MSBuild.5.7.1\build\Microsoft.TypeScript.MSBuild.targets')" />
+  <Import Project="..\packages\EntityFramework.6.4.4\build\EntityFramework.targets" Condition="Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.targets')" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

@@ -1,0 +1,41 @@
+﻿@model IEnumerable<PediatriAsistanNöbet1.Models.Model.Bolum>
+@{
+    ViewBag.Title = "Bölümler";
+    Layout = "~/Views/Shared/_SiteLayout.cshtml";
+}
+
+<div class="container mt-4">
+    <h3 class="mb-4 text-info border-bottom pb-2">Poliklinik ve Servisler</h3>
+    <div class="row">
+        @if (Model != null && Model.Any())
+        {
+            foreach (var item in Model)
+            {
+                <div class="col-md-6 mb-4">
+                    <div class="card h-100 shadow-sm">
+                        <div class="card-header bg-white fw-bold text-primary">
+                            @item.BolumAdi
+                        </div>
+                        <div class="card-body">
+                            <p class="card-text">@item.Aciklama</p>
+                            <div class="row text-center mt-3">
+                                <div class="col-6 border-end">
+                                    <h4 class="text-dark mb-0">@item.HastaSayisi</h4>
+                                    <small class="text-muted">Aktif Hasta</small>
+                                </div>
+                                <div class="col-6">
+                                    <h4 class="text-success mb-0">@item.BosYatakSayisi</h4>
+                                    <small class="text-muted">Boş Yatak</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        }
+        else
+        {
+            <div class="col-12"><div class="alert alert-light">Bölüm bilgisi bulunamadı.</div></div>
+        }
+    </div>
+</div>

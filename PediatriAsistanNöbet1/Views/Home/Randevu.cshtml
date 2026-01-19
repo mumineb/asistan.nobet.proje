@@ -1,0 +1,98 @@
+﻿@model IEnumerable<PediatriAsistanNöbet1.Models.Model.Musaitlik>
+@{
+    ViewBag.Title = "Randevu Al";
+    Layout = "~/Views/Shared/_SiteLayout.cshtml";
+}
+
+<div class="container mt-4">
+    <div class="card shadow-sm border-0">
+        <div class="card-header bg-primary text-white">
+            <h4 class="mb-0"><i class="bi bi-calendar-check me-2"></i>Müsait Randevu Saatleri</h4>
+        </div>
+        <div class="card-body">
+            @if (Model != null && Model.Any())
+            {
+                <div class="table-responsive">
+                    <table class="table table-hover align-middle">
+                        <thead class="table-light">
+                            <tr>
+                                <th>Öğretim Üyesi</th>
+                                <th>Tarih</th>
+                                <th>Saat</th>
+                                <th>İşlem</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td class="fw-bold">@item.OgretimUyesi.Ad @item.OgretimUyesi.Soyad</td>
+                                    <td>@item.Tarih.ToString("dd MMMM yyyy")</td>
+                                    <td>@item.Saat</td>
+                                    <td>
+                                        <button class="btn btn-success btn-sm" onclick="RandevuAl(@item.MusaitlikID, '@item.OgretimUyesi.Ad @item.OgretimUyesi.Soyad')">
+                                            Randevu Al
+                                        </button>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            }
+            else
+            {
+                <div class="alert alert-warning">Şu an için müsait bir randevu saati bulunmamaktadır.</div>
+            }
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="modalRandevu" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Randevu Onayı</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <p><strong id="lblHoca"></strong> ile randevu oluşturuyorsunuz.</p>
+                <form id="frmRandevu">
+                    <input type="hidden" id="MusaitlikID" name="musaitlikId" />
+                    <div class="mb-3">
+                        <label>Öğrenci Numaranız</label>
+                        <input type="text" class="form-control" name="ogrenciNo" required />
+                    </div>
+                    <div class="mb-3">
+                        <label>Notunuz (Opsiyonel)</label>
+                        <textarea class="form-control" name="aciklama" rows="2"></textarea>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" onclick="Onayla()">Onayla ve Bitir</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    function RandevuAl(id, hocaAdi) {
+        $('#MusaitlikID').val(id);
+        $('#lblHoca').text(hocaAdi);
+        var myModal = new bootstrap.Modal(document.getElementById('modalRandevu'));
+        myModal.show();
+    }
+
+    function Onayla() {
+        $.post('/Home/RandevuOlustur', $('#frmRandevu').serialize(), function (res) {
+            if (res.success) {
+                alert(res.message);
+                location.reload();
+            } else {
+                alert(res.message);
+            }
+        });
+    }
+</script>

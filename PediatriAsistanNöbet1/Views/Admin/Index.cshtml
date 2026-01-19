@@ -1,0 +1,144 @@
+﻿@model IEnumerable<PediatriAsistanNöbet1.Models.Model.Nobet>
+@{
+    ViewBag.Title = "Genel Bakış";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="pagetitle">
+    <h1>Yönetim Paneli</h1>
+    <nav>
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="/Admin/Index">Ana Sayfa</a></li>
+            <li class="breadcrumb-item active">Dashboard</li>
+        </ol>
+    </nav>
+</div>
+
+<section class="section dashboard">
+    <div class="row">
+
+        <div class="col-xxl-3 col-md-6">
+            <div class="card info-card sales-card">
+                <div class="card-body">
+                    <h5 class="card-title">Asistanlar <span>| Toplam</span></h5>
+                    <div class="d-flex align-items-center">
+                        <div class="card-icon rounded-circle d-flex align-items-center justify-content-center bg-primary text-white">
+                            <i class="bi bi-people"></i>
+                        </div>
+                        <div class="ps-3">
+                            <h6>@ViewBag.AsistanSayisi</h6>
+                            <span class="text-muted small pt-2 ps-1">Kayıtlı Personel</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-xxl-3 col-md-6">
+            <div class="card info-card revenue-card">
+                <div class="card-body">
+                    <h5 class="card-title">Hocalar <span>| Toplam</span></h5>
+                    <div class="d-flex align-items-center">
+                        <div class="card-icon rounded-circle d-flex align-items-center justify-content-center bg-success text-white">
+                            <i class="bi bi-person-badge"></i>
+                        </div>
+                        <div class="ps-3">
+                            <h6>@ViewBag.HocaSayisi</h6>
+                            <span class="text-muted small pt-2 ps-1">Öğretim Üyesi</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-xxl-3 col-md-6">
+            <div class="card info-card customers-card">
+                <div class="card-body">
+                    <h5 class="card-title">Nöbet <span>| Bugün</span></h5>
+                    <div class="d-flex align-items-center">
+                        <div class="card-icon rounded-circle d-flex align-items-center justify-content-center bg-warning text-white">
+                            <i class="bi bi-calendar-check"></i>
+                        </div>
+                        <div class="ps-3">
+                            <h6>@ViewBag.BugunkuNobetciSayisi</h6>
+                            <span class="text-muted small pt-2 ps-1">Aktif Nöbetçi</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-xxl-3 col-md-6">
+            <div class="card info-card customers-card">
+                <div class="card-body">
+                    <h5 class="card-title">Randevu <span>| Gelecek</span></h5>
+                    <div class="d-flex align-items-center">
+                        <div class="card-icon rounded-circle d-flex align-items-center justify-content-center bg-danger text-white">
+                            <i class="bi bi-journal-medical"></i>
+                        </div>
+                        <div class="ps-3">
+                            <h6>@ViewBag.AktifRandevuSayisi</h6>
+                            <span class="text-muted small pt-2 ps-1">Bekleyen</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="row mt-3">
+        <div class="col-12">
+            <div class="card recent-sales overflow-auto">
+                <div class="card-body">
+                    <h5 class="card-title">Son Planlanan Nöbetler <span>| Son 5 Kayıt</span></h5>
+
+                    <table class="table table-borderless">
+                        <thead>
+                            <tr>
+                                <th scope="col">Tarih</th>
+                                <th scope="col">Asistan</th>
+                                <th scope="col">Bölüm</th>
+                                <th scope="col">Durum</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @if (Model != null && Model.Any())
+                            {
+                                foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <td>@item.NobetTarihi.ToString("dd.MM.yyyy")</td>
+                                        <td class="fw-bold">@item.Asistan.Ad @item.Asistan.Soyad</td>
+                                        <td>@item.Bolum.BolumAdi</td>
+                                        <td>
+                                            @if (item.NobetTarihi < DateTime.Today)
+                                            {
+                                                <span class="badge bg-secondary">Tamamlandı</span>
+                                            }
+                                            else if (item.NobetTarihi == DateTime.Today)
+                                            {
+                                                <span class="badge bg-success">Aktif / Nöbette</span>
+                                            }
+                                            else
+                                            {
+                                                <span class="badge bg-warning text-dark">Planlandı</span>
+                                            }
+                                        </td>
+                                    </tr>
+                                }
+                            }
+                            else
+                            {
+                                <tr>
+                                    <td colspan="4" class="text-center">Henüz nöbet kaydı girilmemiş.</td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

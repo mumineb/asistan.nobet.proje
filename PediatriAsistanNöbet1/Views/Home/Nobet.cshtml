@@ -1,0 +1,92 @@
+﻿@{
+    ViewBag.Title = "Nöbet Takvimi";
+    Layout = "~/Views/Shared/_SiteLayout.cshtml";
+}
+
+<div class="container mt-4">
+    <div class="card shadow-sm border-0">
+        <div class="card-header bg-primary text-white d-flex justify-content-between align-items-center py-3">
+            <h4 class="mb-0">
+                <i class="bi bi-calendar-date me-2"></i>Aylık Nöbet Çizelgesi
+            </h4>
+            <span class="badge bg-light text-primary">@DateTime.Now.ToString("MMMM yyyy")</span>
+        </div>
+        <div class="card-body p-4">
+            <div id='calendar'></div>
+        </div>
+    </div>
+</div>
+
+<script src="~/Content/fullcalendar/dist/index.global.js"></script>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        var calendarEl = document.getElementById('calendar');
+        var calendar = new FullCalendar.Calendar(calendarEl, {
+            // Türkçe Dil Ayarı
+            locale: 'tr',
+
+            // Üst Toolbar Düzeni
+            headerToolbar: {
+                left: 'prev,next today',
+                center: 'title',
+                right: 'dayGridMonth,listMonth' // Ay görünümü ve Liste görünümü
+            },
+
+            // Başlangıç Ayarları
+            initialView: 'dayGridMonth',
+            firstDay: 1, // Haftayı Pazartesi başlat
+            navLinks: true, // Günlere tıklayınca detay açılabilir
+            editable: false, // Sürükle bırak kapalı (sadece görüntüleme)
+            dayMaxEvents: true, // Çok fazla nöbet varsa "+2 more" şeklinde gizle
+
+            // Verileri Çekme (AJAX)
+            events: {
+                url: '/Home/GetNobetler',
+                method: 'GET',
+                failure: function () {
+                    alert('Nöbet verileri yüklenirken bir hata oluştu!');
+                }
+            },
+
+            // Etkinlik Görünümü (Opsiyonel Stil Ayarı)
+            eventDidMount: function (info) {
+                // Etkinlik üzerine gelince detay göstersin (Tooltip)
+                info.el.title = info.event.title;
+            }
+        });
+
+        calendar.render();
+    });
+</script>
+
+<style>
+
+    #calendar {
+        max-width: 100%;
+        margin: 0 auto;
+        font-family: 'Open Sans', sans-serif;
+    }
+
+    .fc-toolbar-title {
+        font-size: 1.5rem !important;
+        font-weight: 600;
+        color: #333;
+    }
+
+    .fc-col-header-cell {
+        background-color: #f8f9fa;
+        padding: 10px 0;
+    }
+
+
+    .fc-event {
+        cursor: pointer;
+        font-size: 0.85rem;
+        border: none !important;
+    }
+
+    .fc-day-today {
+        background-color: #e8f4ff !important; 
+    }
+</style>
