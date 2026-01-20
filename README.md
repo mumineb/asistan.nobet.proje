@@ -2,7 +2,7 @@
 
 Bu proje, bir üniversite hastanesinin Pediatri anabilim dalı için geliştirilmiş; asistan nöbetlerinin, öğretim üyesi randevularının ve bölüm içi acil durumların yönetildiği kapsamlı bir web tabanlı otomasyon sistemidir.
 
-Proje, **ASP.NET MVC 5** mimarisi üzerine inşa edilmiş olup, kullanıcı deneyimini artırmak (SPA hissi vermek) amacıyla tüm CRUD işlemleri **AJAX ve Bootstrap Modals** kullanılarak "Single Page" mantığıyla tasarlanmıştır.
+Proje, **ASP.NET MVC 5** mimarisi üzerine inşa edilmiş olup, kullanıcı deneyimini artırmak amacıyla tüm CRUD işlemleri **AJAX ve Bootstrap Modals** kullanılarak "Single Page" mantığıyla tasarlanmıştır.
 
 ---
 
@@ -41,7 +41,7 @@ Projeyi yerel makinenizde çalıştırmak için aşağıdaki adımları izleyin:
 
 1.  **Projeyi Klonlayın:**
     ```bash
-    git clone [https://github.com/KULLANICI_ADINIZ/PediatriNobetSistemi.git](https://github.com/KULLANICI_ADINIZ/PediatriNobetSistemi.git)
+    git clone [https://github.com/mumineb/asistan.nobet.proje.git](https://github.com/mumineb/asistan.nobet.proje.git)
     ```
 
 2.  **Veritabanı Bağlantısı:**
@@ -61,16 +61,16 @@ Projeyi yerel makinenizde çalıştırmak için aşağıdaki adımları izleyin:
 ## 📷 Ekran Görüntüleri
 
 ### 1. Ana Ekran
-(Screenshots/ana_ekran.png)
+![](Screenshots/ana_ekran.png)
 
 ### 2. Yönetim Paneli (Dashboard)
-(Screenshots/dashboard.png)
+![](Screenshots/dashboard.png)
 
 ### 3. Nöbet Atama (Modal & AJAX)
-(Screenshots/nobet.png)
+![](Screenshots/nobet.png)
 
 ### 4. Nöbet Takvimi
-(Screenshots/takvim.png)
+![](Screenshots/takvim.png)
 
 
 ---
@@ -78,7 +78,7 @@ Projeyi yerel makinenizde çalıştırmak için aşağıdaki adımları izleyin:
 ## 👤 İletişim
 
 * **Geliştirici:** Mümine Buran
-* **LinkedIn:** 
+* **LinkedIn:** https://www.linkedin.com/in/mumineb/
 
 
 ---
