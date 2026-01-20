@@ -6,6 +6,10 @@ Proje, **ASP.NET MVC 5** mimarisi üzerine inşa edilmiş olup, kullanıcı dene
 
 ---
 
+### Ana Ekran
+![](Screenshots/anaekran.png)
+
+
 ## 🚀 Öne Çıkan Özellikler
 
 ### 🔐 Yönetim Paneli (Admin Dashboard)
@@ -60,16 +64,15 @@ Projeyi yerel makinenizde çalıştırmak için aşağıdaki adımları izleyin:
 
 ## 📷 Ekran Görüntüleri
 
-### 1. Ana Ekran
-![](Screenshots/ana_ekran.png)
 
-### 2. Yönetim Paneli (Dashboard)
+
+### 1. Yönetim Paneli (Dashboard)
 ![](Screenshots/dashboard.png)
 
-### 3. Nöbet Atama (Modal & AJAX)
+### 2. Nöbet Atama (Modal & AJAX)
 ![](Screenshots/nobet.png)
 
-### 4. Nöbet Takvimi
+### 3. Nöbet Takvimi
 ![](Screenshots/takvim.png)
 
 
